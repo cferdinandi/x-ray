@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>X-Ray</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- A basic responsive reset -->
+		<style>
+			@-webkit-viewport { width: device-width; zoom: 1.0; }
+			   @-moz-viewport { width: device-width; zoom: 1.0; }
+			    @-ms-viewport { width: device-width; zoom: 1.0; }
+			     @-o-viewport { width: device-width; zoom: 1.0; }
+			        @viewport { width: device-width; zoom: 1.0; }
+
+			html { overflow-y: auto; }
+
+			img, audio, video, canvas { max-width: 100%; }
+
+			/*  Sets body width */
+			.container {
+				max-width: 40em;
+				width: 88%;
+				margin-left: auto;
+				margin-right: auto;
+			}
+		</style>
+
+		<!-- stylesheets -->
+		<link rel="stylesheet" href="css/x-ray-css.css" type="text/css">
+
+		<!-- feature test -->
+		<script>
+			if ( 'querySelector' in document && 'addEventListener' in window && Array.prototype.forEach ) {
+				document.documentElement.className += ' js';
+			}
+		</script>
+
+		<!-- HTML5 Shim for IE -->
+		<!--[if IE]>
+			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<section class="container">
+
+			<h1 style="text-align: center; font-size: 3em;">X-Ray</h1>
+			<p style="text-align: center; font-size: 1.5em;">A script to toggle password visibility.</p>
+
+			<form>
+				<div>
+					<label>Username</label>
+					<input type="text">
+				</div>
+				<div>
+					<label>Password</label>
+					<input id="pw" type="password">
+				</div>
+				<div>
+					<button class="x-ray" data-target="#pw" data-default="show">
+						<span class="x-ray-show">Show Password</span>
+						<span class="x-ray-hide">Hide Password</span>
+					</button>
+				</div>
+			</form>
+
+		</section>
+
+
+		<!-- JavaScript -->
+		<script src="js/buoy.js"></script>
+		<script src="js/x-ray.js"></script>
+
+	</body>
+</html>
