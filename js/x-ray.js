@@ -1,6 +1,6 @@
 /* =============================================================
 
-	X-Ray v1.0
+	X-Ray v1.1
 	A script to toggle password visibility by Chris Ferdinandi
 	http://gomakethings.com
 
@@ -30,9 +30,13 @@
 			var hideText = toggle.querySelector('.x-ray-hide');
 			if ( visibility == 'show' ) {
 				togglePW(pw);
-				buoy.addClass( hideText, 'active' );
+				if ( hideText !== null && hideText !== undefined ) {
+					buoy.addClass( hideText, 'active' );
+				}
 			} else {
-				buoy.addClass( showText, 'active' );
+				if ( showText !== null && showText !== undefined ) {
+					buoy.addClass( showText, 'active' );
+				}
 			}
 		};
 
@@ -50,8 +54,12 @@
 		var updateToggleText = function (toggle) {
 			var showText = toggle.querySelector('.x-ray-show');
 			var hideText = toggle.querySelector('.x-ray-hide');
-			buoy.toggleClass( showText, 'active' );
-			buoy.toggleClass( hideText, 'active' );
+			if ( hideText !== null && hideText !== undefined ) {
+				buoy.toggleClass( hideText, 'active' );
+			}
+			if ( showText !== null && showText !== undefined ) {
+				buoy.toggleClass( showText, 'active' );
+			}
 		};
 
 
