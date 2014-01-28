@@ -18,16 +18,15 @@ window.xray = (function (window, document, undefined) {
 
 		// SELECTORS
 
-		// Get all x-ray toggles
-		var xrayToggles = document.querySelectorAll('.x-ray');
+		var xrayToggles = document.querySelectorAll('[data-x-ray]');
 
 
 		// METHODS
 
 		// Initialize defaults
 		var initDefaults = function (toggle, visibility, pw) {
-			var showText = toggle.querySelector('.x-ray-show');
-			var hideText = toggle.querySelector('.x-ray-hide');
+			var showText = toggle.querySelector('[data-x-ray-show]');
+			var hideText = toggle.querySelector('[data-x-ray-hide]');
 			if ( visibility == 'show' ) {
 				togglePW(pw);
 				if ( hideText !== null && hideText !== undefined ) {
