@@ -1,6 +1,6 @@
 /* =============================================================
 
-	X-Ray v1.1
+	X-Ray v2.0
 	A script to toggle password visibility by Chris Ferdinandi
 	http://gomakethings.com
 
@@ -9,22 +9,22 @@
 
  * ============================================================= */
 
-(function (window, document, undefined) {
+window.xray = (function (window, document, undefined) {
 
 	'use strict';
 
 	// Feature Test
-	if ( 'querySelector' in document && 'addEventListener' in window && Array.prototype.forEach ) {
+	if ( 'querySelector' in document && 'addEventListener' in window ) {
 
-		// VARIABLES
+		// SELECTORS
 
 		// Get all x-ray toggles
 		var xrayToggles = document.querySelectorAll('.x-ray');
 
 
-		// FUNCTIONS
+		// METHODS
 
-		// Function to initialize defaults
+		// Initialize defaults
 		var initDefaults = function (toggle, visibility, pw) {
 			var showText = toggle.querySelector('.x-ray-show');
 			var hideText = toggle.querySelector('.x-ray-hide');
@@ -40,7 +40,7 @@
 			}
 		};
 
-		// Function to toggle password visiblity
+		// Toggle password visiblity
 		var togglePW = function (pw) {
 			var pwType = pw.type;
 			if ( pwType == 'password' ) {
@@ -50,7 +50,7 @@
 			}
 		};
 
-		// Function to update toggle text
+		// Update toggle text
 		var updateToggleText = function (toggle) {
 			var showText = toggle.querySelector('.x-ray-show');
 			var hideText = toggle.querySelector('.x-ray-hide');
@@ -62,28 +62,38 @@
 			}
 		};
 
+		var runToggle = function ( pw, event ) {
+			event.preventDefault();
+			togglePW(pw);
+			updateToggleText(toggle);
+		};
 
-		// LISTENERS AND EVENTS
+
+		// EVENTS, LISTENERS, AND INITS
+
+		// Add class to HTML element to activate conditional CSS
+		buoy.addClass(document.documentElement, 'js-x-ray');
 
 		// When x-ray toggle is clicked, toggle password visibility
-		[].forEach.call(xrayToggles, function (toggle) {
+		for (var i = xrayToggles.length; i--;) {
 
-			// Get default visibility and target password field
+			// SELECTORS
+
+			var toggle = xrayToggles[i];
 			var visibility = toggle.getAttribute('data-default');
 			var pwID = toggle.getAttribute('data-target');
 			var pw = document.querySelector(pwID);
+
+
+			// EVENTS, LISTENERS, AND INITS
 
 			// Initialize password visibility defaults
 			initDefaults(toggle, visibility, pw);
 
 			// If a toggle is clicked, update visibility
-			toggle.addEventListener('click', function(e) {
-				e.preventDefault();
-				togglePW(pw);
-				updateToggleText(toggle);
-			}, false);
-		});
+			toggle.addEventListener('click', runToggle.bind(toggle, pw), false);
 
+		}
 
 	}
 
