@@ -1,6 +1,6 @@
 /* =============================================================
 
-	X-Ray v2.0
+	X-Ray v2.1
 	A script to toggle password visibility by Chris Ferdinandi
 	http://gomakethings.com
 
@@ -74,25 +74,18 @@ window.xray = (function (window, document, undefined) {
 		buoy.addClass(document.documentElement, 'js-x-ray');
 
 		// When x-ray toggle is clicked, toggle password visibility
-		for (var i = xrayToggles.length; i--;) {
+		Array.prototype.forEach.call(xrayToggles, function (toggle, index) {
 
 			// SELECTORS
-
-			var toggle = xrayToggles[i];
 			var visibility = toggle.getAttribute('data-default');
 			var pwID = toggle.getAttribute('data-target');
 			var pw = document.querySelector(pwID);
 
-
 			// EVENTS, LISTENERS, AND INITS
+			initDefaults(toggle, visibility, pw); // Initialize password visibility defaults
+			toggle.addEventListener('click', runToggle.bind(toggle, pw), false); // If a toggle is clicked, update visibility
 
-			// Initialize password visibility defaults
-			initDefaults(toggle, visibility, pw);
-
-			// If a toggle is clicked, update visibility
-			toggle.addEventListener('click', runToggle.bind(toggle, pw), false);
-
-		}
+		});
 
 	}
 
