@@ -59,7 +59,7 @@ window.xray = (function (window, document, undefined) {
 	var _runToggle = function ( pw, event ) {
 		event.preventDefault();
 		_togglePW(pw);
-		_updateToggleText(toggle);
+		_updateToggleText(this);
 	};
 
 	// Initialize X-Ray
