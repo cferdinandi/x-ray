@@ -5,6 +5,11 @@ X-Ray is a script that lets users toggle password visibility in forms.
 Getting started with X-Ray is really easy. [View the online tutorial](http://cferdinandi.github.io/x-ray/) or dig through the `index.html` file.
 
 ## Changelog
+* v3.0 (February 24, 2014)
+  * Better public/private method namespacing.
+  * Require `init()` call to run.
+  * New API exposes additional methods for use in your own scripts.
+  * Better documentation.
 * v2.1 (February 4, 2014)
   * Reverted to `Array.prototype.foreach` loop.
 * v2.0 (January 28, 2014)
