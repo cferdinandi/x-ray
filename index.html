@@ -65,7 +65,12 @@
 		<script src="js/buoy.js"></script>
 		<script src="js/x-ray.js"></script>
 		<script>
-			xray.init();
+			xray.init({
+			toggleActiveClass: 'active',
+			initClass: 'js-x-ray',
+			callbackBefore: function () {},
+			callbackAfter: function () {}
+		});
 		</script>
 
 	</body>
