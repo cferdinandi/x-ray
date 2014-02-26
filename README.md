@@ -6,6 +6,7 @@ A script that lets users toggle password visibility in forms, by [Chris Ferdinan
 3. [Options & Settings](#options-and-settings)
 4. [Changelog](#changelog)
 5. [License](#license)
+6. [Older Docs](#older-docs)
 
 
 
@@ -110,3 +111,9 @@ X-Ray is built with modern JavaScript APIs, and uses progressive enhancement. If
 
 ## License
 X-Ray is licensed under the [MIT License](http://gomakethings.com/mit/).
+
+
+
+## Older Docs
+
+* [Version 2](http://cferdinandi.github.io/x-ray/archive/v2/)
