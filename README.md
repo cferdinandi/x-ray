@@ -1,11 +1,13 @@
 # X-Ray
-A script that lets users toggle password visibility in forms, by [Chris Ferdinandi](http://gomakethings.com). [View the Demo](http://cferdinandi.github.io/x-ray/)
+A script that lets users toggle password visibility in forms. [View the demo](http://cferdinandi.github.io/x-ray/).
+
+**In This Documentation**
 
 1. [Getting Started](#getting-started)
-2. [Browser Compatability](#browser-compatability)
-3. [Options & Settings](#options-and-settings)
-4. [Changelog](#changelog)
-5. [License](#license)
+2. [Options & Settings](#options-and-settings)
+3. [Browser Compatibility](#browser-compatibility)
+4. [License](#license)
+5. [Changelog](#changelog)
 6. [Older Docs](#older-docs)
 
 
@@ -14,9 +16,11 @@ A script that lets users toggle password visibility in forms, by [Chris Ferdinan
 
 ### 1. Include X-Ray on your site.
 
-	<link rel="stylesheet" href="css/x-ray-css.css">
-	<script src="js/x-ray.js"></script>
-	<script src="buoy.js"></script>
+```html
+<link rel="stylesheet" href="css/x-ray-css.css">
+<script src="js/x-ray.js"></script>
+<script src="buoy.js"></script>
+```
 
 X-Ray is [built with Sass](http://sass-lang.com/) for easy customization. If you don't use Sass, that's ok. The `css` folder contains compiled vanilla CSS.
 
@@ -26,18 +30,20 @@ X-Ray also requires [Buoy](http://cferdinandi.github.io/buoy/), a vanilla JS mic
 
 ### 2. Add the markup to your HTML.
 
-	<form>
-		<div>
-			<label>Password</label>
-			<input id="pw" type="password">
-		</div>
-		<div>
-			<button class="x-ray" data-x-ray data-target="#pw" data-default="show">
-				<span class="x-ray-show" data-x-ray-show>Show Password</span>
-				<span class="x-ray-hide" data-x-ray-hide>Hide Password</span>
-			</button>
-		</div>
-	</form>
+```html
+<form>
+	<div>
+		<label>Password</label>
+		<input id="pw" type="password">
+	</div>
+	<div>
+		<button class="x-ray" data-x-ray data-target="#pw" data-default="show">
+			<span class="x-ray-show" data-x-ray-show>Show Password</span>
+			<span class="x-ray-hide" data-x-ray-hide>Hide Password</span>
+		</button>
+	</div>
+</form>
+```
 
 Turn any link or button into a password visibility toggle by adding the `.x-ray` class and `[data-x-ray]` data attribute. The `[data-x-ray]` attribute should match the ID of the target password field. If you would like passwords to be visible by default, set the optional `[data-default]` attribute to `show`.
 
@@ -45,9 +51,11 @@ Use `<span>` elements with the `.x-ray-show` class and `[data-x-ray-show]` data 
 
 ### 3. Initialize X-Ray.
 
-	<script>
-		x-ray.init();
-	</script>
+```html
+<script>
+	xray.init();
+</script>
+```
 
 In the footer of your page, after the content, initialize X-Ray. And that's it, you're done. Nice work!
 
@@ -61,27 +69,31 @@ X-Ray includes smart defaults and works right out of the box. But if you want to
 
 You can pass options and callbacks into X-Ray through the `init()` function:
 
-	xRay.init({
-		toggleActiveClass: 'active', // Class added to active password toggle button
-		initClass: 'js-x-ray', // Class added to <html> element when initiated
-		callbackBefore: function () {}, // Function that's run before password visibility is toggled
-		callbackAfter: function () {} // Function that's run after password visibility is toggled
-	});
+```javascript
+xRay.init({
+	toggleActiveClass: 'active', // Class added to active password toggle button
+	initClass: 'js-x-ray', // Class added to <html> element when initiated
+	callbackBefore: function () {}, // Function that's run before password visibility is toggled
+	callbackAfter: function () {} // Function that's run after password visibility is toggled
+});
+```
 
 ### Use X-Ray events in your own scripts
 
 You can also call X-Ray's toggle password event in your own scripts:
 
-	xRay.runToggle(
-		toggle, // Node that toggles the password visibility. ex. document.querySelector('#toggle')
-		pwID, // The ID or class of the password area(s) to show. ex. '#content'
-		options, // Classes and callbacks. Same options as those passed into the init() function.
-		event // Optional, if a DOM event was triggered.
-	);
+```javascript
+xRay.runToggle(
+	toggle, // Node that toggles the password visibility. ex. document.querySelector('#toggle')
+	pwID, // The ID or class of the password area(s) to show. ex. '#content'
+	options, // Classes and callbacks. Same options as those passed into the init() function.
+	event // Optional, if a DOM event was triggered.
+);
+```
 
 
 
-## Browser Compatability
+## Browser Compatibility
 
 X-Ray works in all modern browsers, and IE 9 and above.
 
@@ -89,28 +101,28 @@ X-Ray is built with modern JavaScript APIs, and uses progressive enhancement. If
 
 
 
-## Changelog
-* v3.0 (February 25, 2014)
-  * Better public/private method namespacing.
-  * Require `init()` call to run.
-  * New API exposes additional methods for use in your own scripts.
-  * Better documentation.
-* v2.1 (February 4, 2014)
-  * Reverted to `Array.prototype.foreach` loop.
-* v2.0 (January 28, 2014)
-  * Switched to a data attribute for the toggle selector (separates scripts from styles).
-  * Added namespacing to IIFE.
-  * Moved feature test to script itself for better progressive enhancement.
-  * Updated looping method.
-* v1.1 (January 24, 2014)
-  * Made `.x-ray-show` and `.x-ray-hide` optional.
-* v1.0 (January 24, 2014)
-  * Initial release.
-
-
-
 ## License
 X-Ray is licensed under the [MIT License](http://gomakethings.com/mit/).
+
+
+
+## Changelog
+* v3.0 - February 25, 2014
+	* Better public/private method namespacing.
+	* Require `init()` call to run.
+	* New API exposes additional methods for use in your own scripts.
+	* Better documentation.
+* v2.1 - February 4, 2014
+	* Reverted to `Array.prototype.foreach` loop.
+* v2.0 - January 28, 2014
+	* Switched to a data attribute for the toggle selector (separates scripts from styles).
+	* Added namespacing to IIFE.
+	* Moved feature test to script itself for better progressive enhancement.
+	* Updated looping method.
+* v1.1 - January 24, 2014
+	* Made `.x-ray-show` and `.x-ray-hide` optional.
+* v1.0 - January 24, 2014
+	* Initial release.
 
 
 
