@@ -51,7 +51,7 @@
 					<input id="pw" type="password">
 				</div>
 				<div>
-					<button class="x-ray" data-x-ray data-target="#pw" data-default="show">
+					<button class="x-ray" data-x-ray="#pw" data-default="show">
 						<span class="x-ray-show" data-x-ray-show>Show Password</span>
 						<span class="x-ray-hide" data-x-ray-hide>Hide Password</span>
 					</button>
@@ -64,6 +64,14 @@
 		<!-- JavaScript -->
 		<script src="js/buoy.js"></script>
 		<script src="js/x-ray.js"></script>
+		<script>
+			xray.init({
+			toggleActiveClass: 'active',
+			initClass: 'js-x-ray',
+			callbackBefore: function () {},
+			callbackAfter: function () {}
+		});
+		</script>
 
 	</body>
 </html>

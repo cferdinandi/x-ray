@@ -1,10 +1,100 @@
 # X-Ray
-X-Ray is a script that lets users toggle password visibility in forms.
+A script that lets users toggle password visibility in forms, by [Chris Ferdinandi](http://gomakethings.com). [View the Demo](http://cferdinandi.github.io/x-ray/)
 
-## How It Works
-Getting started with X-Ray is really easy. [View the online tutorial](http://cferdinandi.github.io/x-ray/) or dig through the `index.html` file.
+1. [Getting Started](#getting-started)
+2. [Browser Compatability](#browser-compatability)
+3. [Options & Settings](#options-and-settings)
+4. [Changelog](#changelog)
+5. [License](#license)
+6. [Older Docs](#older-docs)
+
+
+
+## Getting Started
+
+### 1. Include X-Ray on your site.
+
+	<link rel="stylesheet" href="css/x-ray-css.css">
+	<script src="js/x-ray.js"></script>
+	<script src="buoy.js"></script>
+
+X-Ray is [built with Sass](http://sass-lang.com/) for easy customization. If you don't use Sass, that's ok. The `css` folder contains compiled vanilla CSS.
+
+The `_config.scss` and `_mixins.scss` files are the same ones used in [Kraken](http://cferdinandi.github.io/kraken/), so you can drop the `_x-ray.css` file right into Kraken without making any updates. Or, adjust the variables to suit your own project.
+
+X-Ray also requires [Buoy](http://cferdinandi.github.io/buoy/), a vanilla JS micro-library that contains simple helper functions used by X-Ray.
+
+### 2. Add the markup to your HTML.
+
+	<form>
+		<div>
+			<label>Password</label>
+			<input id="pw" type="password">
+		</div>
+		<div>
+			<button class="x-ray" data-x-ray data-target="#pw" data-default="show">
+				<span class="x-ray-show" data-x-ray-show>Show Password</span>
+				<span class="x-ray-hide" data-x-ray-hide>Hide Password</span>
+			</button>
+		</div>
+	</form>
+
+Turn any link or button into a password visibility toggle by adding the `.x-ray` class and `[data-x-ray]` data attribute. The `[data-x-ray]` attribute should match the ID of the target password field. If you would like passwords to be visible by default, set the optional `[data-default]` attribute to `show`.
+
+Use `<span>` elements with the `.x-ray-show` class and `[data-x-ray-show]` data attribute or `.x-ray-hide` class and `[data-x-ray-hide]` data attribute to change the toggle element based on whether or not the password is visible.
+
+### 3. Initialize X-Ray.
+
+	<script>
+		x-ray.init();
+	</script>
+
+In the footer of your page, after the content, initialize X-Ray. And that's it, you're done. Nice work!
+
+
+
+## Options and Settings
+
+X-Ray includes smart defaults and works right out of the box. But if you want to customize things, it also has a robust API that provides multiple ways for you to adjust the default options and settings.
+
+### Global Settings
+
+You can pass options and callbacks into X-Ray through the `init()` function:
+
+	xRay.init({
+		toggleActiveClass: 'active', // Class added to active password toggle button
+		initClass: 'js-x-ray', // Class added to <html> element when initiated
+		callbackBefore: function () {}, // Function that's run before password visibility is toggled
+		callbackAfter: function () {} // Function that's run after password visibility is toggled
+	});
+
+### Use X-Ray events in your own scripts
+
+You can also call X-Ray's toggle password event in your own scripts:
+
+	xRay.runToggle(
+		toggle, // Node that toggles the password visibility. ex. document.querySelector('#toggle')
+		pwID, // The ID or class of the password area(s) to show. ex. '#content'
+		options, // Classes and callbacks. Same options as those passed into the init() function.
+		event // Optional, if a DOM event was triggered.
+	);
+
+
+
+## Browser Compatability
+
+X-Ray works in all modern browsers, and IE 9 and above.
+
+X-Ray is built with modern JavaScript APIs, and uses progressive enhancement. If the JavaScript file fails to load, or if your site is viewed on older and less capable browsers, passwords will be masked by default.
+
+
 
 ## Changelog
+* v3.0 (February 25, 2014)
+  * Better public/private method namespacing.
+  * Require `init()` call to run.
+  * New API exposes additional methods for use in your own scripts.
+  * Better documentation.
 * v2.1 (February 4, 2014)
   * Reverted to `Array.prototype.foreach` loop.
 * v2.0 (January 28, 2014)
@@ -17,5 +107,13 @@ Getting started with X-Ray is really easy. [View the online tutorial](http://cfe
 * v1.0 (January 24, 2014)
   * Initial release.
 
+
+
 ## License
-X-Ray is free to use under the [MIT License](http://gomakethings.com/mit/).
+X-Ray is licensed under the [MIT License](http://gomakethings.com/mit/).
+
+
+
+## Older Docs
+
+* [Version 2](http://cferdinandi.github.io/x-ray/archive/v2/)

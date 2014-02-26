@@ -1,6 +1,6 @@
 /* =============================================================
 
-	X-Ray v2.1
+	X-Ray v3.0
 	A script to toggle password visibility by Chris Ferdinandi
 	http://gomakethings.com
 
@@ -13,80 +13,131 @@ window.xray = (function (window, document, undefined) {
 
 	'use strict';
 
-	// Feature Test
-	if ( 'querySelector' in document && 'addEventListener' in window && Array.prototype.forEach ) {
-
-		// SELECTORS
-
-		var xrayToggles = document.querySelectorAll('[data-x-ray]');
-
-
-		// METHODS
-
-		// Initialize defaults
-		var initDefaults = function (toggle, visibility, pw) {
-			var showText = toggle.querySelector('[data-x-ray-show]');
-			var hideText = toggle.querySelector('[data-x-ray-hide]');
-			if ( visibility == 'show' ) {
-				togglePW(pw);
-				if ( hideText !== null && hideText !== undefined ) {
-					buoy.addClass( hideText, 'active' );
-				}
-			} else {
-				if ( showText !== null && showText !== undefined ) {
-					buoy.addClass( showText, 'active' );
-				}
-			}
+	// Default settings
+	// Private method
+	// Returns an {object}
+	var _defaults = function () {
+		return {
+			toggleActiveClass: 'active',
+			initClass: 'js-x-ray',
+			callbackBefore: function () {},
+			callbackAfter: function () {}
 		};
+	};
 
-		// Toggle password visiblity
-		var togglePW = function (pw) {
+	// Merge default settings with user options
+	// Private method
+	// Returns an {object}
+	var _mergeObjects = function ( original, updates ) {
+		for (var key in updates) {
+			original[key] = updates[key];
+		}
+		return original;
+	};
+
+	// Toggle password visiblity
+	// Private method
+	// Runs functions
+	var _togglePW = function ( pws ) {
+		Array.prototype.forEach.call(pws, function (pw, index) {
 			var pwType = pw.type;
 			if ( pwType == 'password' ) {
 				pw.type = 'text';
 			} else if ( pwType == 'text' ) {
 				pw.type = 'password';
 			}
-		};
-
-		// Update toggle text
-		var updateToggleText = function (toggle) {
-			var showText = toggle.querySelector('.x-ray-show');
-			var hideText = toggle.querySelector('.x-ray-hide');
-			if ( hideText !== null && hideText !== undefined ) {
-				buoy.toggleClass( hideText, 'active' );
-			}
-			if ( showText !== null && showText !== undefined ) {
-				buoy.toggleClass( showText, 'active' );
-			}
-		};
-
-		var runToggle = function ( pw, event ) {
-			event.preventDefault();
-			togglePW(pw);
-			updateToggleText(toggle);
-		};
-
-
-		// EVENTS, LISTENERS, AND INITS
-
-		// Add class to HTML element to activate conditional CSS
-		buoy.addClass(document.documentElement, 'js-x-ray');
-
-		// When x-ray toggle is clicked, toggle password visibility
-		Array.prototype.forEach.call(xrayToggles, function (toggle, index) {
-
-			// SELECTORS
-			var visibility = toggle.getAttribute('data-default');
-			var pwID = toggle.getAttribute('data-target');
-			var pw = document.querySelector(pwID);
-
-			// EVENTS, LISTENERS, AND INITS
-			initDefaults(toggle, visibility, pw); // Initialize password visibility defaults
-			toggle.addEventListener('click', runToggle.bind(toggle, pw), false); // If a toggle is clicked, update visibility
-
 		});
+	};
 
-	}
+	// Load defaults
+	// Private method
+	// Runs functions
+	var _loadDefaults = function ( toggle, visibility, pwID, options ) {
+		var showText = toggle.querySelector('[data-x-ray-show]');
+		var hideText = toggle.querySelector('[data-x-ray-hide]');
+		var pws = document.querySelectorAll(pwID);
+		if ( visibility == 'show' ) {
+			_togglePW(pws);
+			if ( hideText !== null && hideText !== undefined ) {
+				buoy.addClass( hideText, options.toggleActiveClass );
+			}
+		} else {
+			if ( showText !== null && showText !== undefined ) {
+				buoy.addClass( showText, options.toggleActiveClass );
+			}
+		}
+	};
+
+	// Update toggle text
+	// Private method
+	// Runs functions
+	var _updateToggleText = function ( toggle, options ) {
+		var showText = toggle.querySelector('.x-ray-show');
+		var hideText = toggle.querySelector('.x-ray-hide');
+		if ( hideText !== null && hideText !== undefined ) {
+			buoy.toggleClass( hideText, options.toggleActiveClass );
+		}
+		if ( showText !== null && showText !== undefined ) {
+			buoy.toggleClass( showText, options.toggleActiveClass );
+		}
+	};
+
+	// Show/Hide password visibility
+	// Public method
+	// Runs functions
+	var runToggle = function ( toggle, pwID, options, event ) {
+
+		// Selectors and variables
+		options = _mergeObjects( _defaults(), options || {} ); // Merge user options with defaults
+		var pws = document.querySelectorAll( pwID );
+
+		options.callbackBefore(); // Run callbacks before password visibility toggle
+
+		// If a link, prevent default click event
+		if ( toggle && ( toggle.tagName === 'A' || toggle.tagName === 'BUTTON' ) && event ) {
+			event.preventDefault();
+		}
+		_togglePW( pws ); // Show/Hide password
+		_updateToggleText( toggle, options ); // Change the toggle text
+
+		options.callbackAfter(); // Run callbacks after password visibility toggle
+
+	};
+
+	// Initialize X-Ray
+	// Public method
+	// Runs functions
+	var init = function ( options ) {
+
+		// Feature test before initializing
+		if ( 'querySelector' in document && 'addEventListener' in window && Array.prototype.forEach ) {
+
+			// Selectors and variables
+			options = _mergeObjects( _defaults(), options || {} ); // Merge user options with defaults
+			var xrayToggles = document.querySelectorAll('[data-x-ray]'); // Get show/hide password toggles
+
+			buoy.addClass(document.documentElement, options.initClass); // Add class to HTML element to activate conditional CSS
+
+			// When x-ray toggle is clicked, toggle password visibility
+			Array.prototype.forEach.call(xrayToggles, function (toggle, index) {
+
+				// Selectors and variables
+				var visibility = toggle.getAttribute('data-default');
+				var pwID = toggle.getAttribute('data-x-ray');
+
+				_loadDefaults( toggle, visibility, pwID, options ); // Initialize password visibility defaults
+				toggle.addEventListener('click', runToggle.bind( null, toggle, pwID, options ), false); // If a toggle is clicked, update visibility
+
+			});
+
+		}
+
+	};
+
+	// Return public methods
+	return {
+		init: init,
+		runToggle: runToggle
+	};
 
 })(window, document);
