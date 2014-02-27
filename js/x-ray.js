@@ -14,8 +14,7 @@ window.xray = (function (window, document, undefined) {
 	'use strict';
 
 	// Default settings
-	// Private method
-	// Returns an {object}
+	// Private {object} variable
 	var _defaults = {
 		toggleActiveClass: 'active',
 		initClass: 'js-x-ray',
