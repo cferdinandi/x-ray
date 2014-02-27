@@ -70,7 +70,7 @@ X-Ray includes smart defaults and works right out of the box. But if you want to
 You can pass options and callbacks into X-Ray through the `init()` function:
 
 ```javascript
-xRay.init({
+xray.init({
 	toggleActiveClass: 'active', // Class added to active password toggle button
 	initClass: 'js-x-ray', // Class added to <html> element when initiated
 	callbackBefore: function () {}, // Function that's run before password visibility is toggled
@@ -83,12 +83,25 @@ xRay.init({
 You can also call X-Ray's toggle password event in your own scripts:
 
 ```javascript
-xRay.runToggle(
+xray.runToggle(
 	toggle, // Node that toggles the password visibility. ex. document.querySelector('#toggle')
-	pwID, // The ID or class of the password area(s) to show. ex. '#content'
+	pwID, // The ID or class of the password area(s) to show. ex. '#pw'
 	options, // Classes and callbacks. Same options as those passed into the init() function.
 	event // Optional, if a DOM event was triggered.
 );
+```
+
+**Example 1**
+
+```javascript
+xray.runToggle( null, '#pw' );
+```
+
+**Example 2**
+
+```javascript
+var toggle = document.querySelector('#toggle');
+xray.runToggle( toggle, '#pw' );
 ```
 
 
