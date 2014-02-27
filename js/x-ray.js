@@ -1,6 +1,6 @@
 /* =============================================================
 
-	X-Ray v3.0
+	X-Ray v3.1
 	A script to toggle password visibility by Chris Ferdinandi
 	http://gomakethings.com
 
@@ -16,13 +16,11 @@ window.xray = (function (window, document, undefined) {
 	// Default settings
 	// Private method
 	// Returns an {object}
-	var _defaults = function () {
-		return {
-			toggleActiveClass: 'active',
-			initClass: 'js-x-ray',
-			callbackBefore: function () {},
-			callbackAfter: function () {}
-		};
+	var _defaults = {
+		toggleActiveClass: 'active',
+		initClass: 'js-x-ray',
+		callbackBefore: function () {},
+		callbackAfter: function () {}
 	};
 
 	// Merge default settings with user options
@@ -88,7 +86,7 @@ window.xray = (function (window, document, undefined) {
 	var runToggle = function ( toggle, pwID, options, event ) {
 
 		// Selectors and variables
-		options = _mergeObjects( _defaults(), options || {} ); // Merge user options with defaults
+		options = _mergeObjects( _defaults, options || {} ); // Merge user options with defaults
 		var pws = document.querySelectorAll( pwID );
 
 		options.callbackBefore(); // Run callbacks before password visibility toggle
@@ -113,7 +111,7 @@ window.xray = (function (window, document, undefined) {
 		if ( 'querySelector' in document && 'addEventListener' in window && Array.prototype.forEach ) {
 
 			// Selectors and variables
-			options = _mergeObjects( _defaults(), options || {} ); // Merge user options with defaults
+			options = _mergeObjects( _defaults, options || {} ); // Merge user options with defaults
 			var xrayToggles = document.querySelectorAll('[data-x-ray]'); // Get show/hide password toggles
 
 			buoy.addClass(document.documentElement, options.initClass); // Add class to HTML element to activate conditional CSS
