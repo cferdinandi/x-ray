@@ -84,23 +84,17 @@ You can also call X-Ray's toggle password event in your own scripts:
 
 ```javascript
 xray.runToggle(
-	toggle, // Node that toggles the password visibility. ex. document.querySelector('#toggle')
+	toggle, // Node that toggles the password visibility. ex. document.querySelector('[data-x-ray="#pw"]')
 	pwID, // The ID or class of the password area(s) to show. ex. '#pw'
 	options, // Classes and callbacks. Same options as those passed into the init() function.
 	event // Optional, if a DOM event was triggered.
 );
 ```
 
-**Example 1**
+**Example**
 
 ```javascript
-xray.runToggle( null, '#pw' );
-```
-
-**Example 2**
-
-```javascript
-var toggle = document.querySelector('#toggle');
+var toggle = document.querySelector('[data-x-ray="#pw"]');
 xray.runToggle( toggle, '#pw' );
 ```
 
