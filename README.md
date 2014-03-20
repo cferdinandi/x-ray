@@ -6,9 +6,10 @@ A script that lets users toggle password visibility in forms. [View the demo](ht
 1. [Getting Started](#getting-started)
 2. [Options & Settings](#options-and-settings)
 3. [Browser Compatibility](#browser-compatibility)
-4. [License](#license)
-5. [Changelog](#changelog)
-6. [Older Docs](#older-docs)
+4. [How to Contribute](#how-to-contribute)
+5. [License](#license)
+6. [Changelog](#changelog)
+7. [Older Docs](#older-docs)
 
 
 
@@ -105,6 +106,12 @@ xray.runToggle( toggle, '#pw' );
 X-Ray works in all modern browsers, and IE 9 and above.
 
 X-Ray is built with modern JavaScript APIs, and uses progressive enhancement. If the JavaScript file fails to load, or if your site is viewed on older and less capable browsers, passwords will be masked by default.
+
+
+
+## How to Contribute
+
+In lieu of a formal style guide, take care to maintain the existing coding style. Don't forget to update the version number, the changelog (in the `readme.md` file), and when applicable, the documentation.
 
 
 
