@@ -73,8 +73,8 @@ You can pass options and callbacks into X-Ray through the `init()` function:
 xray.init({
 	toggleActiveClass: 'active', // Class added to active password toggle button
 	initClass: 'js-x-ray', // Class added to <html> element when initiated
-	callbackBefore: function () {}, // Function that's run before password visibility is toggled
-	callbackAfter: function () {} // Function that's run after password visibility is toggled
+	callbackBefore: function ( toggle, pwID ) {}, // Function that's run before password visibility is toggled
+	callbackAfter: function ( toggle, pwID ) {} // Function that's run after password visibility is toggled
 });
 ```
 
@@ -114,6 +114,9 @@ X-Ray is licensed under the [MIT License](http://gomakethings.com/mit/).
 
 
 ## Changelog
+
+* v3.2 - March 19, 2014
+	* Passed arguments into callback functions.
 * v3.1 - February 27, 2014
 	* Converted `_defaults` to a literal object
 * v3.0 - February 25, 2014

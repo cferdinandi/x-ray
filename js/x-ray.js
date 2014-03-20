@@ -1,6 +1,6 @@
 /* =============================================================
 
-	X-Ray v3.1
+	X-Ray v3.2
 	A script to toggle password visibility by Chris Ferdinandi
 	http://gomakethings.com
 
@@ -88,7 +88,7 @@ window.xray = (function (window, document, undefined) {
 		options = _mergeObjects( _defaults, options || {} ); // Merge user options with defaults
 		var pws = document.querySelectorAll( pwID );
 
-		options.callbackBefore(); // Run callbacks before password visibility toggle
+		options.callbackBefore( toggle, pwID ); // Run callbacks before password visibility toggle
 
 		// If a link, prevent default click event
 		if ( toggle && ( toggle.tagName === 'A' || toggle.tagName === 'BUTTON' ) && event ) {
@@ -97,7 +97,7 @@ window.xray = (function (window, document, undefined) {
 		_togglePW( pws ); // Show/Hide password
 		_updateToggleText( toggle, options ); // Change the toggle text
 
-		options.callbackAfter(); // Run callbacks after password visibility toggle
+		options.callbackAfter( toggle, pwID ); // Run callbacks after password visibility toggle
 
 	};
 
