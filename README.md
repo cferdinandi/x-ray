@@ -116,6 +116,7 @@ In lieu of a formal style guide, take care to maintain the existing coding style
 
 
 ## License
+
 X-Ray is licensed under the [MIT License](http://gomakethings.com/mit/).
 
 
@@ -149,4 +150,5 @@ X-Ray is licensed under the [MIT License](http://gomakethings.com/mit/).
 
 ## Older Docs
 
+* [Version 3](https://github.com/cferdinandi/houdini/tree/archive-v3)
 * [Version 2](http://cferdinandi.github.io/x-ray/archive/v2/)
