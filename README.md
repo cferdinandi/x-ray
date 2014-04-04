@@ -150,5 +150,5 @@ X-Ray is licensed under the [MIT License](http://gomakethings.com/mit/).
 
 ## Older Docs
 
-* [Version 3](https://github.com/cferdinandi/houdini/tree/archive-v3)
+* [Version 3](https://github.com/cferdinandi/x-ray/tree/archive-v3)
 * [Version 2](http://cferdinandi.github.io/x-ray/archive/v2/)
