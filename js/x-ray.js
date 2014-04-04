@@ -1,6 +1,6 @@
 /* =============================================================
 
-	X-Ray v3.2
+	X-Ray v4.0
 	A script to toggle password visibility by Chris Ferdinandi
 	http://gomakethings.com
 
@@ -56,11 +56,11 @@ window.xray = (function (window, document, undefined) {
 		if ( visibility == 'show' ) {
 			_togglePW(pws);
 			if ( hideText !== null && hideText !== undefined ) {
-				buoy.addClass( hideText, options.toggleActiveClass );
+				hideText.classList.add( options.toggleActiveClass );
 			}
 		} else {
 			if ( showText !== null && showText !== undefined ) {
-				buoy.addClass( showText, options.toggleActiveClass );
+				showText.classList.add( options.toggleActiveClass );
 			}
 		}
 	};
@@ -72,10 +72,10 @@ window.xray = (function (window, document, undefined) {
 		var showText = toggle.querySelector('.x-ray-show');
 		var hideText = toggle.querySelector('.x-ray-hide');
 		if ( hideText !== null && hideText !== undefined ) {
-			buoy.toggleClass( hideText, options.toggleActiveClass );
+			hideText.classList.toggle( options.toggleActiveClass );
 		}
 		if ( showText !== null && showText !== undefined ) {
-			buoy.toggleClass( showText, options.toggleActiveClass );
+			showText.classList.toggle( options.toggleActiveClass );
 		}
 	};
 
@@ -113,7 +113,7 @@ window.xray = (function (window, document, undefined) {
 			options = _mergeObjects( _defaults, options || {} ); // Merge user options with defaults
 			var xrayToggles = document.querySelectorAll('[data-x-ray]'); // Get show/hide password toggles
 
-			buoy.addClass(document.documentElement, options.initClass); // Add class to HTML element to activate conditional CSS
+			document.documentElement.classList.add( options.initClass ); // Add class to HTML element to activate conditional CSS
 
 			// When x-ray toggle is clicked, toggle password visibility
 			Array.prototype.forEach.call(xrayToggles, function (toggle, index) {

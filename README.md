@@ -122,6 +122,8 @@ X-Ray is licensed under the [MIT License](http://gomakethings.com/mit/).
 
 ## Changelog
 
+* v4.0 - April 4, 2014
+	* Converted from Buoy class helpers to `classList` with polyfill.
 * v3.2 - March 19, 2014
 	* Passed arguments into callback functions.
 * v3.1 - February 27, 2014
