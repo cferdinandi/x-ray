@@ -1,5 +1,7 @@
 # X-Ray
-A script that lets users toggle password visibility in forms. [View the demo](http://cferdinandi.github.io/x-ray/).
+A script that lets users toggle password visibility in forms.
+
+[Download X-Ray 4](https://github.com/cferdinandi/x-ray/archive/master.zip) / [View the demo](http://cferdinandi.github.io/x-ray/).
 
 **In This Documentation**
 
