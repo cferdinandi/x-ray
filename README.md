@@ -6,12 +6,13 @@ A script that lets users toggle password visibility in forms.
 **In This Documentation**
 
 1. [Getting Started](#getting-started)
-2. [Options & Settings](#options-and-settings)
-3. [Browser Compatibility](#browser-compatibility)
-4. [How to Contribute](#how-to-contribute)
-5. [License](#license)
-6. [Changelog](#changelog)
-7. [Older Docs](#older-docs)
+2. [Installing with Package Managers](#installing-with-package-managers)
+3. [Options & Settings](#options-and-settings)
+4. [Browser Compatibility](#browser-compatibility)
+5. [How to Contribute](#how-to-contribute)
+6. [License](#license)
+7. [Changelog](#changelog)
+8. [Older Docs](#older-docs)
 
 
 
@@ -29,7 +30,7 @@ X-Ray is [built with Sass](http://sass-lang.com/) for easy customization. If you
 
 The `_config.scss` and `_mixins.scss` files are the same ones used in [Kraken](http://cferdinandi.github.io/kraken/), so you can drop the `_x-ray.css` file right into Kraken without making any updates. Or, adjust the variables to suit your own project.
 
-X-Ray also requires [Buoy](http://cferdinandi.github.io/buoy/), a simple `classList` polyfill that makes working with classes in vanilla JS a little bit easier.
+X-Ray also requires [classList.js](https://github.com/eligrey/classList.js), a polyfill that extends `classList` support back to IE8.
 
 ### 2. Add the markup to your HTML.
 
@@ -61,6 +62,16 @@ Use `<span>` elements with the `.x-ray-show` class and `[data-x-ray-show]` data 
 ```
 
 In the footer of your page, after the content, initialize X-Ray. And that's it, you're done. Nice work!
+
+
+
+## Installing with Package Managers
+
+You can install X-Ray with your favorite package manager.
+
+* **NPM:** `npm install cferdinandi/x-ray`
+* **Bower:** `bower install https://github.com/cferdinandi/x-ray.git`
+* **Component:** `component install install cferdinandi/x-ray`
 
 
 
@@ -125,6 +136,16 @@ X-Ray is licensed under the [MIT License](http://gomakethings.com/mit/).
 
 ## Changelog
 
+* v4.1.0 - June 9, 2014
+	* Converted to UMD module.
+	* Replaced Buoy with `classList.js` polyfill.
+	* Moved public APIs to exports variable.
+	* Improved feature test.
+	* Replaced `Array.prototype.forEach` hack with proper `forEach` function.
+	* General code optimizations for better minification and performance.
+	* Updated to JSDoc documentation (sort of).
+	* Updated to three number versioning system.
+	* Added package manager installation info.
 * v4.0 - April 4, 2014
 	* Converted from Buoy class helpers to `classList` with polyfill.
 * v3.2 - March 19, 2014
