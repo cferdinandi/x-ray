@@ -71,7 +71,7 @@ You can install X-Ray with your favorite package manager.
 
 * **NPM:** `npm install cferdinandi/x-ray`
 * **Bower:** `bower install https://github.com/cferdinandi/x-ray.git`
-* **Component:** `component install install cferdinandi/x-ray`
+* **Component:** `component install cferdinandi/x-ray`
 
 
 
@@ -136,6 +136,8 @@ X-Ray is licensed under the [MIT License](http://gomakethings.com/mit/).
 
 ## Changelog
 
+* v4.1.1 - June 19, 2014
+	* Fixed factory/root/UMD definition.
 * v4.1.0 - June 9, 2014
 	* Converted to UMD module.
 	* Replaced Buoy with `classList.js` polyfill.
