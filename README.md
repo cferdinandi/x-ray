@@ -1,4 +1,4 @@
-# X-Ray
+# X-Ray [![Build Status](https://travis-ci.org/cferdinandi/x-ray.svg)](https://travis-ci.org/cferdinandi/x-ray)
 A script that lets users toggle password visibility in forms.
 
 [Download X-Ray 4](https://github.com/cferdinandi/x-ray/archive/master.zip) / [View the demo](http://cferdinandi.github.io/x-ray/).
@@ -18,12 +18,14 @@ A script that lets users toggle password visibility in forms.
 
 ## Getting Started
 
+Compiled and production-ready code can be found in the `dist` directory. The `src` directory contains development code. Unit tests are located in the `test` directory.
+
 ### 1. Include X-Ray on your site.
 
 ```html
-<link rel="stylesheet" href="css/x-ray-css.css">
-<script src="js/x-ray.js"></script>
-<script src="buoy.js"></script>
+<link rel="stylesheet" href="dist/css/x-ray-css.css">
+<script src="dist/js/classList.js"></script>
+<script src="dist/js/x-ray.js"></script>
 ```
 
 X-Ray is [built with Sass](http://sass-lang.com/) for easy customization. If you don't use Sass, that's ok. The `css` folder contains compiled vanilla CSS.
@@ -71,7 +73,7 @@ You can install X-Ray with your favorite package manager.
 
 * **NPM:** `npm install cferdinandi/x-ray`
 * **Bower:** `bower install https://github.com/cferdinandi/x-ray.git`
-* **Component:** `component install install cferdinandi/x-ray`
+* **Component:** `component install cferdinandi/x-ray`
 
 
 
@@ -136,6 +138,14 @@ X-Ray is licensed under the [MIT License](http://gomakethings.com/mit/).
 
 ## Changelog
 
+* v4.2.0 - June 23, 2014
+	* Converted to gulp.js workflow.
+	* Added unit testing.
+	* Updated naming conventions.
+	* Removed unused `_config.scss` and `_mixins.scss` files.
+	* Added minified versions of files.
+* v4.1.1 - June 19, 2014
+	* Fixed factory/root/UMD definition.
 * v4.1.0 - June 9, 2014
 	* Converted to UMD module.
 	* Replaced Buoy with `classList.js` polyfill.

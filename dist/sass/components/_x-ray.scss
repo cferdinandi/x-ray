@@ -1,19 +1,18 @@
 /**
- *
- * X-Ray v4.1.0
+ * x-ray v4.2.0
  * A script to toggle password visibility, by Chris Ferdinandi.
  * http://github.com/cferdinandi/x-ray
- *
+ * 
  * Free to use under the MIT License.
  * http://gomakethings.com/mit/
- *
  */
+
 /*	Hide show/hide labels by default */
 .x-ray,
 .x-ray-show,
 .x-ray-hide {
-  display: none;
-  visibility: hidden;
+	display: none;
+	visibility: hidden;
 }
 
 /*	Display show/hide toggle when modern JS API's supported.
@@ -21,6 +20,6 @@
 .js-x-ray .x-ray,
 .x-ray-show.active,
 .x-ray-hide.active {
-  display: inline;
-  visibility: visible;
+	display: inline;
+	visibility: visible;
 }
