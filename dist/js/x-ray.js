@@ -1,12 +1,10 @@
 /**
- *
- * X-Ray v4.1.1
+ * x-ray v4.2.0
  * A script to toggle password visibility, by Chris Ferdinandi.
  * http://github.com/cferdinandi/x-ray
- *
+ * 
  * Free to use under the MIT License.
  * http://gomakethings.com/mit/
- *
  */
 
 (function (root, factory) {
