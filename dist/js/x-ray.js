@@ -1,5 +1,5 @@
 /**
- * x-ray v4.2.0
+ * x-ray v4.2.1
  * A script to toggle password visibility, by Chris Ferdinandi.
  * http://github.com/cferdinandi/x-ray
  * 
@@ -25,6 +25,7 @@
 
 	var exports = {}; // Object for public APIs
 	var supports = !!document.querySelector && !!root.addEventListener; // Feature test
+	var settings;
 
 	// Default settings
 	var defaults = {
@@ -38,22 +39,6 @@
 	//
 	// Methods
 	//
-
-	/**
-	 * Merge defaults with user options
-	 * @private
-	 * @param {Object} defaults Default settings
-	 * @param {Object} options User options
-	 * @returns {Object} Merged values of defaults and options
-	 */
-	var extend = function ( defaults, options ) {
-		for ( var key in options ) {
-			if (Object.prototype.hasOwnProperty.call(options, key)) {
-				defaults[key] = options[key];
-			}
-		}
-		return defaults;
-	};
 
 	/**
 	 * A simple forEach() implementation for Arrays, Objects and NodeLists
@@ -74,6 +59,24 @@
 				callback.call(scope, collection[i], i, collection);
 			}
 		}
+	};
+
+	/**
+	 * Merge defaults with user options
+	 * @private
+	 * @param {Object} defaults Default settings
+	 * @param {Object} options User options
+	 * @returns {Object} Merged values of defaults and options
+	 */
+	var extend = function ( defaults, options ) {
+		var extended = {};
+		forEach(defaults, function (value, prop) {
+			extended[prop] = defaults[prop];
+		});
+		forEach(options, function (value, prop) {
+			extended[prop] = options[prop];
+		});
+		return extended;
 	};
 
 	/**
@@ -144,7 +147,7 @@
 	exports.runToggle = function ( toggle, pwSelector, options, event ) {
 
 		// Selectors and variables
-		var settings = extend( defaults, options || {} ); // Merge user options with defaults
+		var settings = extend( settings || defaults, options || {} );  // Merge user options with defaults
 		var pws = document.querySelectorAll( pwSelector );
 
 		settings.callbackBefore( toggle, pwSelector ); // Run callbacks before password visibility toggle
@@ -171,7 +174,7 @@
 		if ( !supports ) return;
 
 		// Selectors and variables
-		var settings = extend( defaults, options || {} ); // Merge user options with defaults
+		settings = extend( defaults, options || {} ); // Merge user options with defaults
 		var xrayToggles = document.querySelectorAll('[data-x-ray]'); // Get show/hide password toggles
 
 		document.documentElement.classList.add( settings.initClass ); // Add class to HTML element to activate conditional CSS
