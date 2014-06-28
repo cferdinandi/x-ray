@@ -138,6 +138,8 @@ X-Ray is licensed under the [MIT License](http://gomakethings.com/mit/).
 
 ## Changelog
 
+* v4.2.1 - June 28, 2014
+	* Fixed `extend()` method.
 * v4.2.0 - June 23, 2014
 	* Converted to gulp.js workflow.
 	* Added unit testing.
