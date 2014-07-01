@@ -96,7 +96,10 @@ xray.init({
 
 ### Use X-Ray events in your own scripts
 
-You can also call X-Ray's toggle password event in your own scripts:
+You can also call X-Ray's toggle password event in your own scripts.
+
+#### runToggle()
+Toggle password visibility on or off.
 
 ```javascript
 xray.runToggle(
@@ -112,6 +115,13 @@ xray.runToggle(
 ```javascript
 var toggle = document.querySelector('[data-x-ray="#pw"]');
 xray.runToggle( toggle, '#pw' );
+```
+
+#### destroy()
+Destroy the current `xray.init()`.
+
+```javascript
+xray.destroy();
 ```
 
 
