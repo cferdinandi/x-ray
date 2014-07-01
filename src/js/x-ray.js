@@ -16,7 +16,8 @@
 
 	var exports = {}; // Object for public APIs
 	var supports = !!document.querySelector && !!root.addEventListener; // Feature test
-	var settings;
+	var eventListeners = []; //Listeners array
+	var settings, toggles;
 
 	// Default settings
 	var defaults = {
@@ -155,6 +156,34 @@
 	};
 
 	/**
+	 * Destroy the current initialization.
+	 * @public
+	 */
+	exports.destroy = function () {
+		if ( !settings ) return;
+		document.documentElement.classList.remove( settings.initClass );
+		if ( toggles ) {
+			forEach( toggles, function ( toggle, index ) {
+
+				var pws = document.querySelectorAll( toggle.getAttribute('data-x-ray') );
+				var showText = toggle.querySelector('[data-x-ray-show]');
+				var hideText = toggle.querySelector('[data-x-ray-hide]');
+
+				toggle.removeEventListener( 'click', eventListeners[index], false );
+				forEach( pws, function ( pw ) {
+					pw.type = 'password';
+				});
+				showText.classList.remove(settings.toggleActiveClass);
+				hideText.classList.remove(settings.toggleActiveClass);
+
+			});
+			eventListeners = [];
+		}
+		settings = null;
+		toggles = null;
+	};
+
+	/**
 	 * Initialize X-Ray
 	 * @public
 	 * @param {Object} options User settings
@@ -164,17 +193,27 @@
 		// feature test
 		if ( !supports ) return;
 
+		// Destroy any existing initializations
+		exports.destroy();
+
 		// Selectors and variables
 		settings = extend( defaults, options || {} ); // Merge user options with defaults
-		var xrayToggles = document.querySelectorAll('[data-x-ray]'); // Get show/hide password toggles
+		toggles = document.querySelectorAll('[data-x-ray]'); // Get show/hide password toggles
 
 		document.documentElement.classList.add( settings.initClass ); // Add class to HTML element to activate conditional CSS
 
-		forEach(xrayToggles, function (toggle) {
+		forEach(toggles, function (toggle, index) {
+
 			var visibility = toggle.getAttribute('data-default');
 			var pwID = toggle.getAttribute('data-x-ray');
-			loadDefaultVisibility( toggle, visibility, pwID, settings ); // Initialize password visibility defaults
-			toggle.addEventListener('click', exports.runToggle.bind( null, toggle, pwID, settings ), false); // If a toggle is clicked, update visibility
+
+			// Initialize password visibility defaults
+			loadDefaultVisibility( toggle, visibility, pwID, settings );
+
+			// If a toggle is clicked, update visibility
+			eventListeners[index] = exports.runToggle.bind( null, toggle, pwID, settings );
+			toggle.addEventListener('click', eventListeners[index], false);
+
 		});
 
 	};
