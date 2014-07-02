@@ -43,7 +43,7 @@ X-Ray also requires [classList.js](https://github.com/eligrey/classList.js), a p
 		<input id="pw" type="password">
 	</div>
 	<div>
-		<button class="x-ray" data-x-ray data-target="#pw" data-default="show">
+		<button class="x-ray" data-x-ray="#pw" data-default="show">
 			<span class="x-ray-show" data-x-ray-show>Show Password</span>
 			<span class="x-ray-hide" data-x-ray-hide>Hide Password</span>
 		</button>
@@ -96,7 +96,10 @@ xray.init({
 
 ### Use X-Ray events in your own scripts
 
-You can also call X-Ray's toggle password event in your own scripts:
+You can also call X-Ray's toggle password event in your own scripts.
+
+#### runToggle()
+Toggle password visibility on or off.
 
 ```javascript
 xray.runToggle(
@@ -112,6 +115,13 @@ xray.runToggle(
 ```javascript
 var toggle = document.querySelector('[data-x-ray="#pw"]');
 xray.runToggle( toggle, '#pw' );
+```
+
+#### destroy()
+Destroy the current `xray.init()`.
+
+```javascript
+xray.destroy();
 ```
 
 
@@ -138,6 +148,9 @@ X-Ray is licensed under the [MIT License](http://gomakethings.com/mit/).
 
 ## Changelog
 
+* v4.3.0 - June 30, 2014
+	* Updated unit tests.
+	* Added `destroy()` method.
 * v4.2.1 - June 28, 2014
 	* Fixed `extend()` method.
 * v4.2.0 - June 23, 2014
