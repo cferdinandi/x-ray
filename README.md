@@ -43,7 +43,7 @@ X-Ray also requires [classList.js](https://github.com/eligrey/classList.js), a p
 		<input id="pw" type="password">
 	</div>
 	<div>
-		<button class="x-ray" data-x-ray data-target="#pw" data-default="show">
+		<button class="x-ray" data-x-ray="#pw" data-default="show">
 			<span class="x-ray-show" data-x-ray-show>Show Password</span>
 			<span class="x-ray-hide" data-x-ray-hide>Hide Password</span>
 		</button>
