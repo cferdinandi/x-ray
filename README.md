@@ -1,7 +1,7 @@
 # X-Ray [![Build Status](https://travis-ci.org/cferdinandi/x-ray.svg)](https://travis-ci.org/cferdinandi/x-ray)
 A script that lets users toggle password visibility in forms.
 
-[Download X-Ray 4](https://github.com/cferdinandi/x-ray/archive/master.zip) / [View the demo](http://cferdinandi.github.io/x-ray/).
+[Download X-Ray](https://github.com/cferdinandi/x-ray/archive/master.zip) / [View the demo](http://cferdinandi.github.io/x-ray/).
 
 **In This Documentation**
 
@@ -25,6 +25,7 @@ Compiled and production-ready code can be found in the `dist` directory. The `sr
 ```html
 <link rel="stylesheet" href="dist/css/x-ray-css.css">
 <script src="dist/js/classList.js"></script>
+<script src="dist/js/bind-polyfill.js"></script>
 <script src="dist/js/x-ray.js"></script>
 ```
 
@@ -32,7 +33,7 @@ X-Ray is [built with Sass](http://sass-lang.com/) for easy customization. If you
 
 The `_config.scss` and `_mixins.scss` files are the same ones used in [Kraken](http://cferdinandi.github.io/kraken/), so you can drop the `_x-ray.css` file right into Kraken without making any updates. Or, adjust the variables to suit your own project.
 
-X-Ray also requires [classList.js](https://github.com/eligrey/classList.js), a polyfill that extends `classList` support back to IE8.
+X-Ray also requires [classList.js](https://github.com/eligrey/classList.js) and `bind-polyfill.js`, polyfills that extend ECMAScript 5 API support to more browsers.
 
 ### 2. Add the markup to your HTML.
 
@@ -148,6 +149,9 @@ X-Ray is licensed under the [MIT License](http://gomakethings.com/mit/).
 
 ## Changelog
 
+* v4.3.1 - August 8, 2014
+	* Added polyfill for `Functions.prototype.bind`.
+	* Removed Sass paths from `gulpfile.js`.
 * v4.3.0 - June 30, 2014
 	* Updated unit tests.
 	* Added `destroy()` method.
