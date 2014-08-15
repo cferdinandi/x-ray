@@ -14,7 +14,7 @@
 	// Variables
 	//
 
-	var exports = {}; // Object for public APIs
+	var xray = {}; // Object for public APIs
 	var supports = !!document.querySelector && !!root.addEventListener; // Feature test
 	var eventListeners = []; //Listeners array
 	var settings, toggles;
@@ -136,7 +136,7 @@
 	 * @param  {Object} options
 	 * @param  {Event} event
 	 */
-	exports.runToggle = function ( toggle, pwSelector, options, event ) {
+	xray.runToggle = function ( toggle, pwSelector, options, event ) {
 
 		// Selectors and variables
 		var settings = extend( settings || defaults, options || {} );  // Merge user options with defaults
@@ -159,7 +159,7 @@
 	 * Destroy the current initialization.
 	 * @public
 	 */
-	exports.destroy = function () {
+	xray.destroy = function () {
 		if ( !settings ) return;
 		document.documentElement.classList.remove( settings.initClass );
 		if ( toggles ) {
@@ -188,13 +188,13 @@
 	 * @public
 	 * @param {Object} options User settings
 	 */
-	exports.init = function ( options ) {
+	xray.init = function ( options ) {
 
 		// feature test
 		if ( !supports ) return;
 
 		// Destroy any existing initializations
-		exports.destroy();
+		xray.destroy();
 
 		// Selectors and variables
 		settings = extend( defaults, options || {} ); // Merge user options with defaults
@@ -211,7 +211,7 @@
 			loadDefaultVisibility( toggle, visibility, pwID, settings );
 
 			// If a toggle is clicked, update visibility
-			eventListeners[index] = exports.runToggle.bind( null, toggle, pwID, settings );
+			eventListeners[index] = xray.runToggle.bind( null, toggle, pwID, settings );
 			toggle.addEventListener('click', eventListeners[index], false);
 
 		});
@@ -223,6 +223,6 @@
 	// Public APIs
 	//
 
-	return exports;
+	return xray;
 
 });
