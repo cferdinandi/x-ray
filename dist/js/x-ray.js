@@ -1,5 +1,5 @@
 /**
- * x-ray v4.3.2
+ * x-ray v4.4.0
  * A script to toggle password visibility, by Chris Ferdinandi.
  * http://github.com/cferdinandi/x-ray
  * 
@@ -25,7 +25,6 @@
 
 	var xray = {}; // Object for public APIs
 	var supports = !!document.querySelector && !!root.addEventListener; // Feature test
-	var eventListeners = []; //Listeners array
 	var settings, toggles;
 
 	// Default settings
@@ -153,15 +152,23 @@
 
 		settings.callbackBefore( toggle, pwSelector ); // Run callbacks before password visibility toggle
 
-		// If a link, prevent default click event
-		if ( toggle && ( toggle.tagName.toLowerCase() === 'a' || toggle.tagName.toLowerCase() === 'button' ) && event ) {
-			event.preventDefault();
-		}
 		togglePW( pws ); // Show/Hide password
 		updateToggleText( toggle, settings ); // Change the toggle text
 
 		settings.callbackAfter( toggle, pwSelector ); // Run callbacks after password visibility toggle
 
+	};
+
+	/**
+	 * Handle toggle click events
+	 * @private
+	 */
+	var eventHandler = function (event) {
+		var toggle = event.target;
+		if ( toggle ) {
+			event.preventDefault();
+			xray.runToggle( toggle, toggle.getAttribute('data-x-ray'), settings );
+		}
 	};
 
 	/**
@@ -171,14 +178,16 @@
 	xray.destroy = function () {
 		if ( !settings ) return;
 		document.documentElement.classList.remove( settings.initClass );
+		document.removeEventListener('click', eventHandler, false);
 		if ( toggles ) {
-			forEach( toggles, function ( toggle, index ) {
+			forEach( toggles, function ( toggle ) {
 
+				// Get elements
 				var pws = document.querySelectorAll( toggle.getAttribute('data-x-ray') );
 				var showText = toggle.querySelector('[data-x-ray-show]');
 				var hideText = toggle.querySelector('[data-x-ray-hide]');
 
-				toggle.removeEventListener( 'click', eventListeners[index], false );
+				// Reset to default password state
 				forEach( pws, function ( pw ) {
 					pw.type = 'password';
 				});
@@ -186,7 +195,6 @@
 				hideText.classList.remove(settings.toggleActiveClass);
 
 			});
-			eventListeners = [];
 		}
 		settings = null;
 		toggles = null;
@@ -211,19 +219,15 @@
 
 		document.documentElement.classList.add( settings.initClass ); // Add class to HTML element to activate conditional CSS
 
+		// Initialize password visibility defaults
 		forEach(toggles, function (toggle, index) {
-
 			var visibility = toggle.getAttribute('data-default');
 			var pwID = toggle.getAttribute('data-x-ray');
-
-			// Initialize password visibility defaults
 			loadDefaultVisibility( toggle, visibility, pwID, settings );
-
-			// If a toggle is clicked, update visibility
-			eventListeners[index] = xray.runToggle.bind( null, toggle, pwID, settings );
-			toggle.addEventListener('click', eventListeners[index], false);
-
 		});
+
+		// Listen for click events
+		document.addEventListener('click', eventHandler, false);
 
 	};
 
