@@ -1,5 +1,5 @@
 /**
- * x-ray v4.3.2
+ * x-ray v4.4.0
  * A script to toggle password visibility, by Chris Ferdinandi.
  * http://github.com/cferdinandi/x-ray
  * 

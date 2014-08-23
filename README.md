@@ -151,6 +151,10 @@ X-Ray is licensed under the [MIT License](http://gomakethings.com/mit/).
 
 X-Ray uses [semantic versioning](http://semver.org/).
 
+* v4.4.0 - August 23, 2014
+	* Switched to Ruby Sass.
+	* Fixed unit test paths.
+	* Switched to event bubbling.
 * v4.3.2 - August 15, 2014
 	* Added fix for UMD structure.
 * v4.3.1 - August 8, 2014
