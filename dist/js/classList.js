@@ -1,3 +1,12 @@
+/**
+ * x-ray v4.4.1
+ * A script to toggle password visibility, by Chris Ferdinandi.
+ * http://github.com/cferdinandi/x-ray
+ * 
+ * Free to use under the MIT License.
+ * http://gomakethings.com/mit/
+ */
+
 /*
  * classList.js: Cross-browser full element.classList implementation.
  * 2014-01-31
