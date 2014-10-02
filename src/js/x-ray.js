@@ -183,7 +183,9 @@
 	var eventHandler = function (event) {
 		var toggle = getClosest(event.target, '[data-x-ray]');
 		if ( toggle ) {
-			event.preventDefault();
+			if ( toggle.tagName.toLowerCase() === 'a' || toggle.tagName.toLowerCase() === 'button' ) {
+				event.preventDefault();
+			}
 			xray.runToggle( toggle, toggle.getAttribute('data-x-ray'), settings );
 		}
 	};
@@ -245,6 +247,7 @@
 
 		// Listen for click events
 		document.addEventListener('click', eventHandler, false);
+		document.addEventListener('change', eventHandler, false);
 
 	};
 
