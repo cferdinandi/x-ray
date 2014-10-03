@@ -1,5 +1,5 @@
 /**
- * x-ray v4.5.0
+ * x-ray v4.5.1
  * A script to toggle password visibility, by Chris Ferdinandi.
  * http://github.com/cferdinandi/x-ray
  * 
@@ -15,7 +15,7 @@
 	} else {
 		root.xray = factory(root);
 	}
-})(this, function (root) {
+})(window || this, function (root) {
 
 	'use strict';
 
