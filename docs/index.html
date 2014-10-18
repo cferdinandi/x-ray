@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>X-Ray</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- stylesheets -->
+		<link rel="stylesheet" href="dist/css/x-ray.css" type="text/css">
+		<link rel="stylesheet" href="assets/css/custom.css" type="text/css">
+	</head>
+
+	<body>
+
+		<main class="container">
+
+			<nav>
+				<h1>X-Ray</h1>
+				<p><a href="https://github.com/cferdinandi/x-ray">GitHub</a></p>
+				<hr>
+			</nav>
+
+			<section>
+	<h2>With a button:</h2>
+
+	<form>
+		<div>
+			<label>Username</label>
+			<input type="text">
+		</div>
+		<div>
+			<label>Password</label>
+			<input id="pw1" type="password">
+		</div>
+		<div>
+			<button class="x-ray" data-x-ray="#pw1" data-default="show">
+				<span class="x-ray-show" data-x-ray-show>Show Password</span>
+				<span class="x-ray-hide" data-x-ray-hide>Hide Password</span>
+			</button>
+		</div>
+	</form>
+
+	<br><br>
+
+	<h2>With a checkbox:</h2>
+
+	<form>
+		<div>
+			<label>Username</label>
+			<input type="text">
+		</div>
+		<div>
+			<label>Password</label>
+			<input id="pw2" type="password">
+		</div>
+		<div>
+			<label class="x-ray" data-x-ray="#pw2" data-default="show">
+				<input type="checkbox" checked>
+				Show password
+			</label>
+		</div>
+	</form>
+
+	<br><br>
+
+	<h2>Multiple passwords:</h2>
+
+	<form>
+		<div>
+			<label>Old Password</label>
+			<input class="pw3" type="password">
+		</div>
+		<div>
+			<label>New Password</label>
+			<input class="pw3" type="password">
+		</div>
+		<div>
+			<label class="x-ray" data-x-ray=".pw3" data-default="show">
+				<input type="checkbox" checked>
+				Show passwords
+			</label>
+		</div>
+	</form>
+			</section>
+		</main>
+
+		<!-- Javascript -->
+		<script src="dist/js/classList.js"></script>
+		<script src="dist/js/x-ray.js"></script>
+		<script>
+			xray.init({
+				toggleActiveClass: 'active',
+				initClass: 'js-x-ray',
+				callbackBefore: function () {},
+				callbackAfter: function () {}
+			});
+		</script>
+
+
+	</body>
+</html>
