@@ -1,5 +1,5 @@
 /**
- * x-ray v4.5.2
+ * x-ray v5.0.0
  * A script to toggle password visibility, by Chris Ferdinandi.
  * http://github.com/cferdinandi/x-ray
  * 
@@ -256,7 +256,6 @@
 
 		// Listen for click events
 		document.addEventListener('click', eventHandler, false);
-		document.addEventListener('change', eventHandler, false);
 
 	};
 

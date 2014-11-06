@@ -247,7 +247,6 @@
 
 		// Listen for click events
 		document.addEventListener('click', eventHandler, false);
-		document.addEventListener('change', eventHandler, false);
 
 	};
 

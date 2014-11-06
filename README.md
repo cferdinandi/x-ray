@@ -56,6 +56,52 @@ Turn any link or button into a password visibility toggle by adding the `.x-ray`
 
 Use `<span>` elements with the `.x-ray-show` class and `[data-x-ray-show]` data attribute or `.x-ray-hide` class and `[data-x-ray-hide]` data attribute to change the toggle element based on whether or not the password is visible.
 
+#### Using Checkboxes
+
+If you'd prefer, you can use a checkbox instead of a button to toggle password visibility.
+
+```html
+<form>
+	<div>
+		<label>Username</label>
+		<input type="text">
+	</div>
+	<div>
+		<label>Password</label>
+		<input id="pw" type="password">
+	</div>
+	<div>
+		<label class="x-ray">
+			<input type="checkbox" data-x-ray="#pw" data-default="show" checked>
+			Show password
+		</label>
+	</div>
+</form>
+```
+
+#### Toggling Multiple Password Fields
+
+You can toggle multiple password fields with one button or checkbox by using a class identifier instead of an ID.
+
+```html
+<form>
+	<div>
+		<label>Old Password</label>
+		<input class="pw" type="password">
+	</div>
+	<div>
+		<label>New Password</label>
+		<input class="pw" type="password">
+	</div>
+	<div>
+		<label class="x-ray">
+			<input type="checkbox" data-x-ray=".pw" data-default="show" checked>
+			Show passwords
+		</label>
+	</div>
+</form>
+```
+
 ### 3. Initialize X-Ray.
 
 ```html
@@ -173,6 +219,8 @@ X-Ray is licensed under the [MIT License](http://gomakethings.com/mit/).
 
 X-Ray uses [semantic versioning](http://semver.org/).
 
+* v5.0.0 - November 6, 2014
+	* Fixed bug that was causing checkbox clicks to fail.
 * v4.5.2 - October 17, 2014
 	* Removed `.bind` dependency and polyfill.
 	* Updated `gulpfile.js` tasks and namespacing.
