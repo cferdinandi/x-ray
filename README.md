@@ -218,6 +218,8 @@ X-Ray is licensed under the [MIT License](http://gomakethings.com/mit/).
 
 X-Ray uses [semantic versioning](http://semver.org/).
 
+* v5.0.1 - March 7, 2015
+	* Fixed AMD wrapper.
 * v5.0.0 - November 6, 2014
 	* Fixed bug that was causing checkbox clicks to fail.
 * v4.5.2 - October 17, 2014
