@@ -1,6 +1,6 @@
 {
 	"name": "x-ray",
-	"version": "5.0.2",
+	"version": "5.0.3",
 	"description": "A script to toggle password visibility",
 	"main": "./dist",
 	"author": {
