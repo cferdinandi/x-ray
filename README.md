@@ -218,6 +218,8 @@ X-Ray is licensed under the [MIT License](http://gomakethings.com/mit/).
 
 X-Ray uses [semantic versioning](http://semver.org/).
 
+* v5.0.3 - May 13, 2015
+	* Fixed Browserify `window` bug.
 * v5.0.2 - March 9, 2015
 	* REALLY fixed UMD wrapper.
 * v5.0.1 - March 7, 2015
