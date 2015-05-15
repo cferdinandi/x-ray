@@ -12,8 +12,7 @@ A script that lets users toggle password visibility in forms.
 5. [Browser Compatibility](#browser-compatibility)
 6. [How to Contribute](#how-to-contribute)
 7. [License](#license)
-8. [Changelog](#changelog)
-9. [Older Docs](#older-docs)
+8. [Older Docs](#older-docs)
 
 
 
@@ -211,85 +210,6 @@ In lieu of a formal style guide, take care to maintain the existing coding style
 ## License
 
 X-Ray is licensed under the [MIT License](http://gomakethings.com/mit/).
-
-
-
-## Changelog
-
-X-Ray uses [semantic versioning](http://semver.org/).
-
-* v5.0.3 - May 13, 2015
-	* Fixed Browserify `window` bug.
-* v5.0.2 - March 9, 2015
-	* REALLY fixed UMD wrapper.
-* v5.0.1 - March 7, 2015
-	* Fixed AMD wrapper.
-* v5.0.0 - November 6, 2014
-	* Fixed bug that was causing checkbox clicks to fail.
-* v4.5.2 - October 17, 2014
-	* Removed `.bind` dependency and polyfill.
-	* Updated `gulpfile.js` tasks and namespacing.
-* v4.5.1 - October 2, 2014
-	* Fixed CommonJS bug.
-	* Added lazypipe to `gulpfile.js`.
-* v4.5.0 - October 1, 2014
-	* Added support for checkboxes.
-* v4.4.1 - August 31, 2014
-	* Fixed event listener filter to account for sub elements.
-* v4.4.0 - August 23, 2014
-	* Switched to Ruby Sass.
-	* Fixed unit test paths.
-	* Switched to event bubbling.
-* v4.3.2 - August 15, 2014
-	* Added fix for UMD structure.
-* v4.3.1 - August 8, 2014
-	* Added polyfill for `Functions.prototype.bind`.
-	* Removed Sass paths from `gulpfile.js`.
-* v4.3.0 - June 30, 2014
-	* Updated unit tests.
-	* Added `destroy()` method.
-* v4.2.1 - June 28, 2014
-	* Fixed `extend()` method.
-* v4.2.0 - June 23, 2014
-	* Converted to gulp.js workflow.
-	* Added unit testing.
-	* Updated naming conventions.
-	* Removed unused `_config.scss` and `_mixins.scss` files.
-	* Added minified versions of files.
-* v4.1.1 - June 19, 2014
-	* Fixed factory/root/UMD definition.
-* v4.1.0 - June 9, 2014
-	* Converted to UMD module.
-	* Replaced Buoy with `classList.js` polyfill.
-	* Moved public APIs to exports variable.
-	* Improved feature test.
-	* Replaced `Array.prototype.forEach` hack with proper `forEach` function.
-	* General code optimizations for better minification and performance.
-	* Updated to JSDoc documentation (sort of).
-	* Updated to three number versioning system.
-	* Added package manager installation info.
-* v4.0 - April 4, 2014
-	* Converted from Buoy class helpers to `classList` with polyfill.
-* v3.2 - March 19, 2014
-	* Passed arguments into callback functions.
-* v3.1 - February 27, 2014
-	* Converted `_defaults` to a literal object
-* v3.0 - February 25, 2014
-	* Better public/private method namespacing.
-	* Require `init()` call to run.
-	* New API exposes additional methods for use in your own scripts.
-	* Better documentation.
-* v2.1 - February 4, 2014
-	* Reverted to `Array.prototype.foreach` loop.
-* v2.0 - January 28, 2014
-	* Switched to a data attribute for the toggle selector (separates scripts from styles).
-	* Added namespacing to IIFE.
-	* Moved feature test to script itself for better progressive enhancement.
-	* Updated looping method.
-* v1.1 - January 24, 2014
-	* Made `.x-ray-show` and `.x-ray-hide` optional.
-* v1.0 - January 24, 2014
-	* Initial release.
 
 
 
