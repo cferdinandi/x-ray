@@ -12,7 +12,6 @@ A script that lets users toggle password visibility in forms.
 5. [Browser Compatibility](#browser-compatibility)
 6. [How to Contribute](#how-to-contribute)
 7. [License](#license)
-8. [Older Docs](#older-docs)
 
 
 
@@ -209,11 +208,4 @@ In lieu of a formal style guide, take care to maintain the existing coding style
 
 ## License
 
-X-Ray is licensed under the [MIT License](http://gomakethings.com/mit/).
-
-
-
-## Older Docs
-
-* [Version 3](https://github.com/cferdinandi/x-ray/tree/archive-v3)
-* [Version 2](http://cferdinandi.github.io/x-ray/archive/v2/)
+The code is available under the [MIT License](LICENSE.md).
