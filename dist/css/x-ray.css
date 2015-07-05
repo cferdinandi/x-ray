@@ -1,5 +1,5 @@
 /**
- * x-ray v5.0.3
+ * x-ray v6.0.0
  * A script to toggle password visibility, by Chris Ferdinandi.
  * http://github.com/cferdinandi/x-ray
  * 
@@ -8,7 +8,7 @@
  */
 
 /*	Hide show/hide labels by default */
-/* line 2, ../components/_x-ray.scss */
+/* line 4, /Users/cferdinandi/Sites/x-ray/src/sass/components/_x-ray.scss */
 .x-ray,
 .x-ray-show,
 .x-ray-hide {
@@ -18,7 +18,7 @@
 
 /*	Display show/hide toggle when modern JS API's supported.
  *	Display show/hide labels when active. */
-/* line 11, ../components/_x-ray.scss */
+/* line 13, /Users/cferdinandi/Sites/x-ray/src/sass/components/_x-ray.scss */
 .js-x-ray .x-ray,
 .x-ray-show.active,
 .x-ray-hide.active {

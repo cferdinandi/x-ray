@@ -22,16 +22,13 @@ Compiled and production-ready code can be found in the `dist` directory. The `sr
 ### 1. Include X-Ray on your site.
 
 ```html
-<link rel="stylesheet" href="dist/css/x-ray-css.css">
+<link rel="stylesheet" href="dist/css/x-ray.css">
 <script src="dist/js/classList.js"></script>
+<script src="dist/js/buoy.js"></script>
 <script src="dist/js/x-ray.js"></script>
 ```
 
-X-Ray is [built with Sass](http://sass-lang.com/) for easy customization. If you don't use Sass, that's ok. The `css` folder contains compiled vanilla CSS.
-
-The `_config.scss` and `_mixins.scss` files are the same ones used in [Kraken](http://cferdinandi.github.io/kraken/), so you can drop the `_x-ray.css` file right into Kraken without making any updates. Or, adjust the variables to suit your own project.
-
-X-Ray also requires [classList.js](https://github.com/eligrey/classList.js), a polyfill that extends ECMAScript 5 API support to more browsers.
+X-Ray requires [classList.js](https://github.com/eligrey/classList.js), a polyfill that extends ECMAScript 5 API support to more browsers. It also requires [Buoy](https://github.com/cferdinandi/buoy), a lightweight collection of helper methods for getting stuff done with native JavaScript.
 
 ### 2. Add the markup to your HTML.
 
@@ -130,7 +127,6 @@ If you would prefer, you can work with the development code in the `src` directo
 Make sure these are installed first.
 
 * [Node.js](http://nodejs.org)
-* [Ruby Sass](http://sass-lang.com/install)
 * [Gulp](http://gulpjs.com) `sudo npm install -g gulp`
 
 ### Quick Start
@@ -155,8 +151,7 @@ You can pass options and callbacks into X-Ray through the `init()` function:
 xray.init({
 	toggleActiveClass: 'active', // Class added to active password toggle button
 	initClass: 'js-x-ray', // Class added to <html> element when initiated
-	callbackBefore: function ( toggle, pwID ) {}, // Function that's run before password visibility is toggled
-	callbackAfter: function ( toggle, pwID ) {} // Function that's run after password visibility is toggled
+	callback: function ( toggle, pwID ) {} // Function that's run after password visibility is toggled
 });
 ```
 
