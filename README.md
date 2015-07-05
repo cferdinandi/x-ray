@@ -22,7 +22,7 @@ Compiled and production-ready code can be found in the `dist` directory. The `sr
 ### 1. Include X-Ray on your site.
 
 ```html
-<link rel="stylesheet" href="dist/css/x-ray-css.css">
+<link rel="stylesheet" href="dist/css/x-ray.css">
 <script src="dist/js/classList.js"></script>
 <script src="dist/js/buoy.js"></script>
 <script src="dist/js/x-ray.js"></script>
