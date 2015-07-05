@@ -22,8 +22,7 @@
 	var defaults = {
 		toggleActiveClass: 'active',
 		initClass: 'js-x-ray',
-		callbackBefore: function () {},
-		callbackAfter: function () {}
+		callback: function () {}
 	};
 
 
@@ -32,77 +31,12 @@
 	//
 
 	/**
-	 * A simple forEach() implementation for Arrays, Objects and NodeLists
-	 * @private
-	 * @param {Array|Object|NodeList} collection Collection of items to iterate
-	 * @param {Function} callback Callback function for each iteration
-	 * @param {Array|Object|NodeList} scope Object/NodeList/Array that forEach is iterating over (aka `this`)
-	 */
-	var forEach = function (collection, callback, scope) {
-		if (Object.prototype.toString.call(collection) === '[object Object]') {
-			for (var prop in collection) {
-				if (Object.prototype.hasOwnProperty.call(collection, prop)) {
-					callback.call(scope, collection[prop], prop, collection);
-				}
-			}
-		} else {
-			for (var i = 0, len = collection.length; i < len; i++) {
-				callback.call(scope, collection[i], i, collection);
-			}
-		}
-	};
-
-	/**
-	 * Merge defaults with user options
-	 * @private
-	 * @param {Object} defaults Default settings
-	 * @param {Object} options User options
-	 * @returns {Object} Merged values of defaults and options
-	 */
-	var extend = function ( defaults, options ) {
-		var extended = {};
-		forEach(defaults, function (value, prop) {
-			extended[prop] = defaults[prop];
-		});
-		forEach(options, function (value, prop) {
-			extended[prop] = options[prop];
-		});
-		return extended;
-	};
-
-	/**
-	 * Get the closest matching element up the DOM tree
-	 * @param {Element} elem Starting element
-	 * @param {String} selector Selector to match against (class, ID, or data attribute)
-	 * @return {Boolean|Element} Returns false if not match found
-	 */
-	var getClosest = function (elem, selector) {
-		var firstChar = selector.charAt(0);
-		for ( ; elem && elem !== document; elem = elem.parentNode ) {
-			if ( firstChar === '.' ) {
-				if ( elem.classList.contains( selector.substr(1) ) ) {
-					return elem;
-				}
-			} else if ( firstChar === '#' ) {
-				if ( elem.id === selector.substr(1) ) {
-					return elem;
-				}
-			} else if ( firstChar === '[' ) {
-				if ( elem.hasAttribute( selector.substr(1, selector.length - 2) ) ) {
-					return elem;
-				}
-			}
-		}
-		return false;
-	};
-
-	/**
 	 * Toggle password visibility
 	 * @private
 	 * @param  {NodeList} pws Password fields to toggle
 	 */
 	var togglePW = function ( pws ) {
-		forEach(pws, function (pw) {
+		buoy.forEach(pws, function (pw) {
 			var pwType = pw.type.toLowerCase();
 			if ( pwType === 'password' ) {
 				pw.type = 'text';
@@ -164,15 +98,13 @@
 	xray.runToggle = function ( toggle, pwSelector, options, event ) {
 
 		// Selectors and variables
-		var settings = extend( settings || defaults, options || {} );  // Merge user options with defaults
+		var settings = buoy.extend( settings || defaults, options || {} );  // Merge user options with defaults
 		var pws = document.querySelectorAll( pwSelector );
-
-		settings.callbackBefore( toggle, pwSelector ); // Run callbacks before password visibility toggle
 
 		togglePW( pws ); // Show/Hide password
 		updateToggleText( toggle, settings ); // Change the toggle text
 
-		settings.callbackAfter( toggle, pwSelector ); // Run callbacks after password visibility toggle
+		settings.callback( toggle, pwSelector ); // Run callbacks after password visibility toggle
 
 	};
 
@@ -181,7 +113,7 @@
 	 * @private
 	 */
 	var eventHandler = function (event) {
-		var toggle = getClosest(event.target, '[data-x-ray]');
+		var toggle = buoy.getClosest(event.target, '[data-x-ray]');
 		if ( toggle ) {
 			if ( toggle.tagName.toLowerCase() === 'a' || toggle.tagName.toLowerCase() === 'button' ) {
 				event.preventDefault();
@@ -199,7 +131,7 @@
 		document.documentElement.classList.remove( settings.initClass );
 		document.removeEventListener('click', eventHandler, false);
 		if ( toggles ) {
-			forEach( toggles, function ( toggle ) {
+			buoy.forEach( toggles, function ( toggle ) {
 
 				// Get elements
 				var pws = document.querySelectorAll( toggle.getAttribute('data-x-ray') );
@@ -207,7 +139,7 @@
 				var hideText = toggle.querySelector('[data-x-ray-hide]');
 
 				// Reset to default password state
-				forEach( pws, function ( pw ) {
+				buoy.forEach( pws, function ( pw ) {
 					pw.type = 'password';
 				});
 				showText.classList.remove(settings.toggleActiveClass);
@@ -233,13 +165,13 @@
 		xray.destroy();
 
 		// Selectors and variables
-		settings = extend( defaults, options || {} ); // Merge user options with defaults
+		settings = buoy.extend( defaults, options || {} ); // Merge user options with defaults
 		toggles = document.querySelectorAll('[data-x-ray]'); // Get show/hide password toggles
 
 		document.documentElement.classList.add( settings.initClass ); // Add class to HTML element to activate conditional CSS
 
 		// Initialize password visibility defaults
-		forEach(toggles, function (toggle, index) {
+		buoy.forEach(toggles, function (toggle, index) {
 			var visibility = toggle.getAttribute('data-default');
 			var pwID = toggle.getAttribute('data-x-ray');
 			loadDefaultVisibility( toggle, visibility, pwID, settings );

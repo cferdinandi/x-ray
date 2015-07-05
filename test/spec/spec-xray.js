@@ -165,8 +165,7 @@ describe('X-Ray', function () {
 			xray.init({
 				toggleActiveClass: 'toggle-active',
 				initClass: 'js-test',
-				callbackBefore: function () { document.documentElement.classList.add('callback-before'); },
-				callbackAfter: function () { document.documentElement.classList.add('callback-after'); }
+				callback: function () { document.documentElement.classList.add('callback'); }
 			});
 			toggle = document.querySelector('[data-x-ray]');
 			content = document.querySelector( toggle.getAttribute('data-x-ray') );
@@ -178,8 +177,7 @@ describe('X-Ray', function () {
 			trigger('click', toggle);
 			expect(toggle.querySelector('[data-x-ray-show]').classList.contains('toggle-active')).toBe(true);
 			expect(doc.classList.contains('js-test')).toBe(true);
-			expect(doc.classList.contains('callback-before')).toBe(true);
-			expect(doc.classList.contains('callback-after')).toBe(true);
+			expect(doc.classList.contains('callback')).toBe(true);
 		});
 
 	});
