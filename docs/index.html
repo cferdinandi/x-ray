@@ -6,14 +6,21 @@
 		<title>X-Ray</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<!-- stylesheets -->
-		<link rel="stylesheet" href="dist/css/x-ray.css" type="text/css">
-		<link rel="stylesheet" href="assets/css/custom.css" type="text/css">
+		<!-- style -->
+		<style type="text/css">
+			body {
+				max-width: 40em;
+				width: 88%;
+				margin-left: auto;
+				margin-right: auto;
+			}
+		</style>
+
 	</head>
 
 	<body>
 
-		<main class="container">
+		<main>
 
 			<nav>
 				<h1>X-Ray</h1>
@@ -22,78 +29,69 @@
 			</nav>
 
 			<section>
-	<h2>With a button:</h2>
+<h2 id="with-a-button">With a button</h2>
+<form>
+    <div>
+        <label>Username</label>
+        <input type="text">
+    </div>
+    <div>
+        <label>Password</label>
+        <input id="pw1" type="password">
+    </div>
+    <div>
+        <button class="js-xray-1" hidden></button>
+    </div>
+</form>
 
-	<form>
-		<div>
-			<label>Username</label>
-			<input type="text">
-		</div>
-		<div>
-			<label>Password</label>
-			<input id="pw1" type="password">
-		</div>
-		<div>
-			<button class="x-ray" data-x-ray="#pw1" data-default="show">
-				<span class="x-ray-show" data-x-ray-show>Show Password</span>
-				<span class="x-ray-hide" data-x-ray-hide>Hide Password</span>
-			</button>
-		</div>
-	</form>
+<p><br><br></p>
+<h2 id="with-a-checkbox">With a checkbox</h2>
+<form>
+    <div>
+        <label>Username</label>
+        <input type="text">
+    </div>
+    <div>
+        <label>Password</label>
+        <input id="pw2" type="password">
+    </div>
+    <div>
+        <label hidden>
+            <input class="js-xray-2" type="checkbox" checked>
+            Show password
+        </label>
+    </div>
+</form>
 
-	<br><br>
-
-	<h2>With a checkbox:</h2>
-
-	<form>
-		<div>
-			<label>Username</label>
-			<input type="text">
-		</div>
-		<div>
-			<label>Password</label>
-			<input id="pw2" type="password">
-		</div>
-		<div>
-			<label class="x-ray">
-				<input type="checkbox" data-x-ray="#pw2" data-default="show" checked>
-				Show password
-			</label>
-		</div>
-	</form>
-
-	<br><br>
-
-	<h2>Multiple passwords:</h2>
-
-	<form>
-		<div>
-			<label>Old Password</label>
-			<input class="pw3" type="password">
-		</div>
-		<div>
-			<label>New Password</label>
-			<input class="pw3" type="password">
-		</div>
-		<div>
-			<label class="x-ray">
-				<input type="checkbox" data-x-ray=".pw3" data-default="show" checked>
-				Show passwords
-			</label>
-		</div>
-	</form>
+<p><br><br></p>
+<h2 id="multiple-passwords">Multiple passwords</h2>
+<form>
+    <div>
+        <label>Old Password</label>
+        <input class="pw3" type="password">
+    </div>
+    <div>
+        <label>New Password</label>
+        <input class="pw3" type="password">
+    </div>
+    <div>
+        <label hidden>
+            <input type="checkbox" class="js-xray-3" checked>
+            Show passwords
+        </label>
+    </div>
+</form>
 			</section>
 		</main>
 
 		<!-- Javascript -->
-		<script src="dist/js/classList.js"></script>
-		<script src="dist/js/x-ray.js"></script>
+		<script src="dist/js/xRay.js"></script>
 		<script>
-			xray.init({
-				toggleActiveClass: 'active',
-				initClass: 'js-x-ray',
-				callback: function () {}
-			});
+			if ( !!document.querySelector && !!window.addEventListener ) {
+				xRay( document.querySelector( '.js-xray-1' ), document.querySelector( '#pw1' ), true, 'Show Password', 'Hide Password' );
+				xRay( document.querySelector( '.js-xray-2' ), document.querySelector( '#pw2' ), true );
+				xRay( document.querySelector( '.js-xray-3' ), document.querySelectorAll( '.pw3' ), true );
+			}
 		</script>
 
 

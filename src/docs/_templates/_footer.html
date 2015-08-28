@@ -3,14 +3,13 @@
 		</main>
 
 		<!-- Javascript -->
-		<script src="dist/js/classList.js"></script>
-		<script src="dist/js/x-ray.js"></script>
+		<script src="dist/js/xRay.js"></script>
 		<script>
-			xray.init({
-				toggleActiveClass: 'active',
-				initClass: 'js-x-ray',
-				callback: function () {}
-			});
+			if ( !!document.querySelector && !!window.addEventListener ) {
+				xRay( document.querySelector( '.js-xray-1' ), document.querySelector( '#pw1' ), true, 'Show Password', 'Hide Password' );
+				xRay( document.querySelector( '.js-xray-2' ), document.querySelector( '#pw2' ), true );
+				xRay( document.querySelector( '.js-xray-3' ), document.querySelectorAll( '.pw3' ), true );
+			}
 		</script>
 
 
