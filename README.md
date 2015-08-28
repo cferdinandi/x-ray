@@ -6,39 +6,35 @@ Toggle password visibility in forms.
 
 ## Usage
 
-### 1. Include `xRay.js` on your site.
+1. Include `xRay.js` on your site.
 
-```html
-<script src="dist/js/xRay.js"></script>
-```
+	```html
+	<script src="dist/js/xRay.js"></script>
+	```
+2. Add a link, button, or checkbox to your form to toggle the password field. Add the `[hidden]` attribute to hide the element until the script had loaded. If you want the text of link or button toggles to change based on the visibility of the password field, leave the element blank.
 
-### 2. Add the markup to your HTML.
+	```html
+	<button class="js-xray" hidden></button>
+	/* or... */
+	<a class="js-xray" href="#"></a>
+	/* or... */
+	<label hidden>
+		<input class="js-xray" type="checkbox">
+		Show Password
+	</label>
+	```
+3. Call `xRay.js`.
 
-Add a link, button, or checkbox to your form to toggle the password field. Add the `[hidden]` attribute to hide the element until the script had loaded. If you want the text of link or button toggles to change based on the visibility of the password field, leave the element blank.
-
-```html
-<button class="js-xray" hidden></button>
-/* or... */
-<a class="js-xray" href="#"></a>
-/* or... */
-<label hidden>
-	<input class="js-xray" type="checkbox">
-	Show Password
-</label>
-```
-
-### 3. Call `xRay.js`.
-
-```js
-xRay(
-	toggle, // The element that toggles visibility
-	pws, // The password field(s)
-	show, // If true, show password by default [optional]
-	showText, // Text to display if password is hidden [optional]
-	hideText, // Test to display if password is visible [optional]
-	cb // Callback to run after password visibility changes
-);
-```
+	```js
+	xRay(
+		toggle, // The element that toggles visibility
+		pws, // The password field(s)
+		show, // If true, show password by default [optional]
+		showText, // Text to display if password is hidden [optional]
+		hideText, // Test to display if password is visible [optional]
+		cb // Callback to run after password visibility changes
+	);
+	```
 
 
 ## Examples
