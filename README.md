@@ -37,11 +37,6 @@ Toggle password visibility in forms.
 	```
 
 
-## Cutting the mustard
-
-[Description here]
-
-
 ## Examples
 
 **With a button**
@@ -135,14 +130,14 @@ Toggle password visibility in forms.
 	if ( !!document.querySelector && !!window.addEventListener ) {
 		xRay(
 			document.querySelector( '.js-xray' ),
-			document.querySelector( '.pw' )
+			document.querySelectorAll( '.pw' )
 		);
 	}
 </script>
 ```
 
 
-[See working examples in the demo](http://cferdinandi.github.io/x-ray/).
+[See working examples in the demo.](http://cferdinandi.github.io/x-ray/)
 
 
 
@@ -182,6 +177,15 @@ X-Ray works in all modern browsers, and IE 9 and above.
 
 X-Ray is built with modern JavaScript APIs, and uses progressive enhancement. If the JavaScript file fails to load, or if your site is viewed on older and less capable browsers, passwords will be masked by default.
 
+### Cutting the Mustard
+
+You should check for `document.querySelector` and `window.addEventListener` support before calling `xRay.js`.
+
+```js
+if ( 'querySelector' in document && 'addEventListener' in window ) {
+	xRay( ... );
+}
+```
 
 
 ## How to Contribute
