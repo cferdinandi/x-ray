@@ -85,11 +85,13 @@
 		</main>
 
 		<!-- Javascript -->
-		<script src="dist/js/x-ray.js"></script>
+		<script src="dist/js/xRay.js"></script>
 		<script>
-			xRay( '.js-xray-1', '#pw1', true, 'Show Password', 'Hide Password' );
-			xRay( '.js-xray-2', '#pw2', true );
-			xRay( '.js-xray-3', '.pw3', true );
+			if ( !!document.querySelector && !!window.addEventListener ) {
+				xRay( document.querySelector( '.js-xray-1' ), document.querySelector( '#pw1' ), true, 'Show Password', 'Hide Password' );
+				xRay( document.querySelector( '.js-xray-2' ), document.querySelector( '#pw2' ), true );
+				xRay( document.querySelector( '.js-xray-3' ), document.querySelectorAll( '.pw3' ), true );
+			}
 		</script>
 
 
