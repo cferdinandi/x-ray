@@ -1,10 +1,8 @@
-/**
- * x-ray v7.0.0
- * A script to toggle password visibility, by Chris Ferdinandi.
+/*!
+ * xRay.js v8.0.0: Toggle password visibility
+ * (c) 2015 Chris Ferdinandi
+ * MIT License
  * http://github.com/cferdinandi/x-ray
- * 
- * Free to use under the MIT License.
- * http://gomakethings.com/mit/
  */
 
 /*

@@ -3,14 +3,11 @@
 		</main>
 
 		<!-- Javascript -->
-		<script src="dist/js/classList.js"></script>
 		<script src="dist/js/x-ray.js"></script>
 		<script>
-			xray.init({
-				toggleActiveClass: 'active',
-				initClass: 'js-x-ray',
-				callback: function () {}
-			});
+			xRay( '.js-xray-1', '#pw1', true, 'Show Password', 'Hide Password' );
+			xRay( '.js-xray-2', '#pw2', true );
+			xRay( '.js-xray-3', '.pw3', true );
 		</script>
 
 
