@@ -3,13 +3,9 @@
 		</main>
 
 		<!-- Javascript -->
-		<script src="dist/js/xRay.js"></script>
+		<script src="dist/js/x-ray.js"></script>
 		<script>
-			if ( !!document.querySelector && !!window.addEventListener ) {
-				xRay( document.querySelector( '.js-xray-1' ), document.querySelector( '#pw1' ), true, 'Show Password', 'Hide Password' );
-				xRay( document.querySelector( '.js-xray-2' ), document.querySelector( '#pw2' ), true );
-				xRay( document.querySelector( '.js-xray-3' ), document.querySelectorAll( '.pw3' ), true );
-			}
+			xray.init();
 		</script>
 
 

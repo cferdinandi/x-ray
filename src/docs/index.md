@@ -10,7 +10,10 @@
 		<input id="pw1" type="password">
 	</div>
 	<div>
-		<button class="js-xray-1" hidden></button>
+		<button class="x-ray" data-x-ray="#pw1" data-default="show">
+			<span class="x-ray-show" data-x-ray-show>Show Password</span>
+			<span class="x-ray-hide" data-x-ray-hide>Hide Password</span>
+		</button>
 	</div>
 </form>
 
@@ -28,8 +31,8 @@
 		<input id="pw2" type="password">
 	</div>
 	<div>
-		<label hidden>
-			<input class="js-xray-2" type="checkbox" checked>
+		<label class="x-ray">
+			<input type="checkbox" data-x-ray="#pw2" data-default="show" checked>
 			Show password
 		</label>
 	</div>
@@ -49,8 +52,8 @@
 		<input class="pw3" type="password">
 	</div>
 	<div>
-		<label hidden>
-			<input type="checkbox" class="js-xray-3" checked>
+		<label class="x-ray">
+			<input type="checkbox" data-x-ray=".pw3" data-default="show" checked>
 			Show passwords
 		</label>
 	</div>

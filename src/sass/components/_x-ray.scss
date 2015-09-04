@@ -1,0 +1,16 @@
+/*	Hide show/hide labels by default */
+.x-ray,
+.x-ray-show,
+.x-ray-hide {
+	display: none;
+	visibility: hidden;
+}
+
+/*	Display show/hide toggle when modern JS API's supported.
+ *	Display show/hide labels when active. */
+.js-x-ray .x-ray,
+.x-ray-show.active,
+.x-ray-hide.active {
+	display: inline;
+	visibility: visible;
+}

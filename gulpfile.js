@@ -17,11 +17,17 @@ var watch = require('gulp-watch');
 var livereload = require('gulp-livereload');
 var package = require('./package.json');
 
-// Scripts
+// Scripts and tests
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
+var karma = require('gulp-karma');
+
+// Styles
+var sass = require('gulp-sass');
+var prefix = require('gulp-autoprefixer');
+var minify = require('gulp-minify-css');
 
 // Docs
 var markdown = require('gulp-markdown');
@@ -38,6 +44,17 @@ var paths = {
 	scripts: {
 		input: 'src/js/*',
 		output: 'dist/js/'
+	},
+	styles: {
+		input: 'src/sass/**/*.{scss,sass}',
+		output: 'dist/css/'
+	},
+	test: {
+		input: 'src/js/**/*.js',
+		karma: 'test/karma.conf.js',
+		spec: 'test/spec/**/*.js',
+		coverage: 'test/coverage/',
+		results: 'test/results/'
 	},
 	docs: {
 		input: 'src/docs/*.{html,md,markdown}',
@@ -97,6 +114,28 @@ gulp.task('build:scripts', ['clean:dist'], function() {
 		.pipe(jsTasks());
 });
 
+// Process, lint, and minify Sass files
+gulp.task('build:styles', ['clean:dist'], function() {
+	return gulp.src(paths.styles.input)
+		.pipe(plumber())
+		.pipe(sass({
+			outputStyle: 'expanded',
+			sourceComments: true
+		}))
+		.pipe(flatten())
+		.pipe(prefix({
+			browsers: ['last 2 version', '> 1%'],
+			cascade: true,
+			remove: true
+		}))
+		.pipe(header(banner.full, { package : package }))
+		.pipe(gulp.dest(paths.styles.output))
+		.pipe(rename({ suffix: '.min' }))
+		.pipe(minify())
+		.pipe(header(banner.min, { package : package }))
+		.pipe(gulp.dest(paths.styles.output));
+});
+
 // Lint scripts
 gulp.task('lint:scripts', function () {
 	return gulp.src(paths.scripts.input)
@@ -105,11 +144,27 @@ gulp.task('lint:scripts', function () {
 		.pipe(jshint.reporter('jshint-stylish'));
 });
 
-// Remove prexisting content from output folder
+// Remove pre-existing content from output and test folders
 gulp.task('clean:dist', function () {
 	del.sync([
 		paths.output
 	]);
+});
+
+// Remove pre-existing content from text folders
+gulp.task('clean:test', function () {
+	del.sync([
+		paths.test.coverage,
+		paths.test.results
+	]);
+});
+
+// Run unit tests
+gulp.task('test:scripts', function() {
+	return gulp.src([paths.test.input].concat([paths.test.spec]))
+		.pipe(plumber())
+		.pipe(karma({ configFile: paths.test.karma }))
+		.on('error', function(err) { throw err; });
 });
 
 // Generate documentation
@@ -172,7 +227,8 @@ gulp.task('refresh', ['compile', 'docs'], function () {
 gulp.task('compile', [
 	'lint:scripts',
 	'clean:dist',
-	'build:scripts'
+	'build:scripts',
+	'build:styles'
 ]);
 
 // Generate documentation
@@ -183,7 +239,7 @@ gulp.task('docs', [
 	'copy:assets'
 ]);
 
-// Compile files and generate docs
+// Compile files and generate docs (default)
 gulp.task('default', [
 	'compile',
 	'docs'
@@ -193,4 +249,10 @@ gulp.task('default', [
 gulp.task('watch', [
 	'listen',
 	'default'
+]);
+
+// Run unit tests
+gulp.task('test', [
+	'default',
+	'test:scripts'
 ]);
