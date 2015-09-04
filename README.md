@@ -1,81 +1,47 @@
-# xRay.js [![Build Status](https://travis-ci.org/cferdinandi/x-ray.svg)](https://travis-ci.org/cferdinandi/x-ray)
-Toggle password visibility in forms.
+# X-Ray [![Build Status](https://travis-ci.org/cferdinandi/x-ray.svg)](https://travis-ci.org/cferdinandi/x-ray)
+A script that lets users toggle password visibility in forms.
 
 [Download X-Ray](https://github.com/cferdinandi/x-ray/archive/master.zip) / [View the demo](http://cferdinandi.github.io/x-ray/)
 
 
-## Usage
 
-1. Include `xRay.js` on your site.
+## Getting Started
 
-	```html
-	<script src="dist/js/xRay.js"></script>
-	```
-2. Add a link, button, or checkbox to your form to toggle the password field. Add the `[hidden]` attribute to hide the element until the script had loaded. If you want the text of link or button toggles to change based on the visibility of the password field, leave the element blank.
+Compiled and production-ready code can be found in the `dist` directory. The `src` directory contains development code. Unit tests are located in the `test` directory.
 
-	```html
-	<button class="js-xray" hidden></button>
-	/* or... */
-	<a class="js-xray" href="#"></a>
-	/* or... */
-	<label hidden>
-		<input class="js-xray" type="checkbox">
-		Show Password
-	</label>
-	```
-3. Call `xRay.js`.
-
-	```js
-	xRay(
-		toggle, // The element that toggles visibility
-		pws, // The password field(s)
-		show, // If true, show password by default [optional]
-		showText, // Text to display if password is hidden [optional]
-		hideText, // Test to display if password is visible [optional]
-		cb // Callback to run after password visibility changes
-	);
-	```
-
-
-## Examples
-
-**With a button**
+### 1. Include X-Ray on your site.
 
 ```html
-<script src="xRay.js"></script>
-
-<form>
-	<div>
-		<label>Username</label>
-		<input type="text">
-	</div>
-	<div>
-		<label>Password</label>
-		<input id="pw" type="password">
-	</div>
-	<div>
-		<button class="js-xray" hidden></button>
-	</div>
-</form>
-
-<script>
-	if ( !!document.querySelector && !!window.addEventListener ) {
-		xRay(
-			document.querySelector( '.js-xray' ),
-			document.querySelector( '#pw' ),
-			true,
-			'Show Password',
-			'Hide Password'
-		);
-	}
-</script>
+<link rel="stylesheet" href="dist/css/x-ray.css">
+<script src="dist/js/x-ray.js"></script>
 ```
 
-**With a checkbox**
+### 2. Add the markup to your HTML.
 
 ```html
-<script src="xRay.js"></script>
+<form>
+	<div>
+		<label>Password</label>
+		<input id="pw" type="password">
+	</div>
+	<div>
+		<button class="x-ray" data-x-ray="#pw" data-default="show">
+			<span class="x-ray-show" data-x-ray-show>Show Password</span>
+			<span class="x-ray-hide" data-x-ray-hide>Hide Password</span>
+		</button>
+	</div>
+</form>
+```
 
+Turn any link or button into a password visibility toggle by adding the `.x-ray` class and `[data-x-ray]` attribute. The value of the `[data-x-ray]` attribute should match the selector for the target password field. If you would like passwords to be visible by default, set the optional `[data-default]` attribute to `show`.
+
+Use `<span>` elements with the `.x-ray-show` class and `[data-x-ray-show]` data attribute or `.x-ray-hide` class and `[data-x-ray-hide]` data attribute to change the toggle element based on whether or not the password is visible.
+
+#### Using Checkboxes
+
+If you'd prefer, you can use a checkbox instead of a button to toggle password visibility.
+
+```html
 <form>
 	<div>
 		<label>Username</label>
@@ -86,32 +52,22 @@ Toggle password visibility in forms.
 		<input id="pw" type="password">
 	</div>
 	<div>
-		<label hidden>
-			<input class="js-xray" type="checkbox" checked>
+		<label class="x-ray">
+			<input type="checkbox" data-x-ray="#pw" data-default="show" checked>
 			Show password
 		</label>
 	</div>
 </form>
-
-<script>
-	if ( !!document.querySelector && !!window.addEventListener ) {
-		xRay(
-			document.querySelector( '.js-xray' ),
-			document.querySelector( '#pw' ),
-			true
-		);
-	}
-</script>
 ```
 
-**With multiple password fields, hidden by default**
+#### Toggling Multiple Password Fields
+
+You can toggle multiple password fields with one button or checkbox by using a class selector instead of an ID.
 
 ```html
-<script src="xRay.js"></script>
-
 <form>
 	<div>
-		<label>Current Password</label>
+		<label>Old Password</label>
 		<input class="pw" type="password">
 	</div>
 	<div>
@@ -119,25 +75,23 @@ Toggle password visibility in forms.
 		<input class="pw" type="password">
 	</div>
 	<div>
-		<label hidden>
-			<input class="js-xray" type="checkbox">
-			Show password
+		<label class="x-ray">
+			<input type="checkbox" data-x-ray=".pw" data-default="show" checked>
+			Show passwords
 		</label>
 	</div>
 </form>
+```
 
+### 3. Initialize X-Ray.
+
+```html
 <script>
-	if ( !!document.querySelector && !!window.addEventListener ) {
-		xRay(
-			document.querySelector( '.js-xray' ),
-			document.querySelectorAll( '.pw' )
-		);
-	}
+	xray.init();
 </script>
 ```
 
-
-[See working examples in the demo.](http://cferdinandi.github.io/x-ray/)
+In the footer of your page, after the content, initialize X-Ray. And that's it, you're done. Nice work!
 
 
 
@@ -153,7 +107,7 @@ You can install X-Ray with your favorite package manager.
 
 ## Working with the Source Files
 
-If you would prefer, you can work with the development code in the `src` directory using the included [Gulp build system](http://gulpjs.com/). This compiles, lints, and minifies code.
+If you would prefer, you can work with the development code in the `src` directory using the included [Gulp build system](http://gulpjs.com/). This compiles, lints, and minifies code, and runs unit tests. It's the same build system that's used by [Kraken](http://cferdinandi.github.io/kraken/), so it includes some unnecessary tasks and Sass variables but can be dropped right in to the boilerplate without any configuration.
 
 ### Dependencies
 Make sure these are installed first.
@@ -168,24 +122,67 @@ Make sure these are installed first.
 3. When it's done installing, run one of the task runners to get going:
 	* `gulp` manually compiles files.
 	* `gulp watch` automatically compiles files and applies changes using [LiveReload](http://livereload.com/).
+	* `gulp test` compiles files and runs unit tests.
+
+
+
+## Options and Settings
+
+X-Ray includes smart defaults and works right out of the box. But if you want to customize things, it also has a robust API that provides multiple ways for you to adjust the default options and settings.
+
+### Global Settings
+
+You can pass options and callbacks into X-Ray through the `init()` function:
+
+```javascript
+xray.init({
+	selector: '[data-x-ray]', // Selector for the password toggle (must be a valid CSS selector)
+	selectorShow: '[data-x-ray-show]', // Selector for the "show password" text (must be a valid CSS selector)
+	selectorHide: '[data-x-ray-hide]', // Selector for the "hide password" text  (must be a valid CSS selector)
+	toggleActiveClass: 'active', // Class added to active password toggle button
+	initClass: 'js-x-ray', // Class added to <html> element when initiated
+	callback: function ( toggle, pwID ) {} // Function that's run after password visibility is toggled
+});
+```
+
+### Use X-Ray events in your own scripts
+
+You can also call X-Ray's toggle password event in your own scripts.
+
+#### runToggle()
+Toggle password visibility on or off.
+
+```javascript
+xray.runToggle(
+	toggle, // Node that toggles the password visibility. ex. document.querySelector('[data-x-ray="#pw"]')
+	pwID, // The ID or class of the password area(s) to show. ex. '#pw'
+	options, // Classes and callbacks. Same options as those passed into the init() function.
+	event // Optional, if a DOM event was triggered.
+);
+```
+
+**Example**
+
+```javascript
+var toggle = document.querySelector('[data-x-ray="#pw"]');
+xray.runToggle( toggle, '#pw' );
+```
+
+#### destroy()
+Destroy the current `xray.init()`. This is called automatically during the init function to remove any existing initializations.
+
+```javascript
+xray.destroy();
+```
 
 
 
 ## Browser Compatibility
 
-X-Ray works in all modern browsers, and IE 9 and above.
+X-Ray works in all modern browsers, and IE 10 and above. You can extend browser support back to IE 9 with the [classList.js polyfill](https://github.com/eligrey/classList.js/).
 
 X-Ray is built with modern JavaScript APIs, and uses progressive enhancement. If the JavaScript file fails to load, or if your site is viewed on older and less capable browsers, passwords will be masked by default.
 
-### Cutting the Mustard
-
-You should check for `document.querySelector` and `window.addEventListener` support before calling `xRay.js`.
-
-```js
-if ( 'querySelector' in document && 'addEventListener' in window ) {
-	xRay( ... );
-}
-```
 
 
 ## How to Contribute
