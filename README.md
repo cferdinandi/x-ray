@@ -7,7 +7,7 @@ A script that lets users toggle password visibility in forms.
 
 ## Getting Started
 
-Compiled and production-ready code can be found in the `dist` directory. The `src` directory contains development code. Unit tests are located in the `test` directory.
+Compiled and production-ready code can be found in the `dist` directory. The `src` directory contains development code.
 
 ### 1. Include X-Ray on your site.
 
@@ -107,7 +107,7 @@ You can install X-Ray with your favorite package manager.
 
 ## Working with the Source Files
 
-If you would prefer, you can work with the development code in the `src` directory using the included [Gulp build system](http://gulpjs.com/). This compiles, lints, and minifies code, and runs unit tests. It's the same build system that's used by [Kraken](http://cferdinandi.github.io/kraken/), so it includes some unnecessary tasks and Sass variables but can be dropped right in to the boilerplate without any configuration.
+If you would prefer, you can work with the development code in the `src` directory using the included [Gulp build system](http://gulpjs.com/). This compiles, lints, and minifies code.
 
 ### Dependencies
 Make sure these are installed first.
@@ -122,7 +122,6 @@ Make sure these are installed first.
 3. When it's done installing, run one of the task runners to get going:
 	* `gulp` manually compiles files.
 	* `gulp watch` automatically compiles files and applies changes using [LiveReload](http://livereload.com/).
-	* `gulp test` compiles files and runs unit tests.
 
 
 
