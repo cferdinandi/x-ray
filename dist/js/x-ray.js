@@ -1,6 +1,6 @@
 /*!
- * x-ray v9.0.0: Toggle password visibility
- * (c) 2015 Chris Ferdinandi
+ * x-ray v9.1.0: Toggle password visibility
+ * (c) 2016 Chris Ferdinandi
  * MIT License
  * http://github.com/cferdinandi/x-ray
  */
