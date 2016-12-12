@@ -1,6 +1,6 @@
 {
 	"name": "x-ray",
-	"version": "9.1.0",
+	"version": "9.2.0",
 	"description": "Toggle password visibility",
 	"main": "./dist/js/x-ray.min.js",
 	"author": {
